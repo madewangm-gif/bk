@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="index, follow"><title>关于hexo博客搭建的试验成果 • Devin的博客</title><meta name="description" content="关于hexo博客搭建的试验成果 - Devin"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="https://unpkg.com/nanoreset@3.0.1/nanoreset.min.css"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Devin的博客"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="wrap" id="barba-wrapper"><header><h1 class="branding"><a href="/" title="Devin的博客"><img class="logo-image" src="/logo.svg" alt="logo"></a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link no-barba" href="/" target="_self">主页</a></li><li class="nav-list-item"><a class="nav-list-link no-barba" href="/about" target="_self">关于我</a></li><li class="nav-list-item"><a class="nav-list-link no-barba" href="/archives" target="_self">历史文档</a></li><li class="nav-list-item"></ul></header><div class="barba-container"><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">关于hexo博客搭建的试验成果</h1><div class="post-info"><a></a>2026-03-24</div><div class="post-content"><p>这个错误的核心意思是：你的 Hexo 主题 <code>simpleblock</code> 依赖一个叫 <code>jade</code> 的模块，但你的项目中<strong>没有安装这个模块</strong>，导致 Hexo 在加载主题脚本 <code>helpers.js</code> 时失败了。</p>
+<p><code>jade</code> 是一个 Node.js 的模板引擎（现在改名为 <code>pug</code>），你的主题代码里明确引用了它，但它并没有被安装到你的项目依赖中，所以 Node.js 找不到这个模块就报错了。</p>
+<hr>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>你只需要在项目根目录下安装缺失的 <code>jade</code> 模块即可，具体步骤如下：</p>
+<h4 id="1-打开终端，确保在-Hexo-项目根目录"><a href="#1-打开终端，确保在-Hexo-项目根目录" class="headerlink" title="1. 打开终端，确保在 Hexo 项目根目录"></a>1. 打开终端，确保在 Hexo 项目根目录</h4><p>你的项目路径是 <code>E:\hexo\1</code>，确保终端当前目录是这个路径。</p>
+<h4 id="2-执行安装命令"><a href="#2-执行安装命令" class="headerlink" title="2. 执行安装命令"></a>2. 执行安装命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 安装 jade 模块（生产环境依赖）</span><br><span class="line">npm install jade --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-重新执行-hexo-clean-命令"><a href="#3-重新执行-hexo-clean-命令" class="headerlink" title="3. 重新执行 hexo clean 命令"></a>3. 重新执行 hexo clean 命令</h4><p>安装完成后，再次运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>此时应该不会再报 <code>Cannot find module &#39;jade&#39;</code> 的错误了。</p>
+<h4 id="（可选）如果安装-jade-后仍有问题"><a href="#（可选）如果安装-jade-后仍有问题" class="headerlink" title="（可选）如果安装 jade 后仍有问题"></a>（可选）如果安装 jade 后仍有问题</h4><p>如果 <code>jade</code> 安装后还是报错，可能是因为新版 Node.js 对旧版 <code>jade</code> 兼容性不好，可以尝试安装它的新版（pug），并修改主题代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 安装 pug（jade 的新版本）</span><br><span class="line">npm install pug --save</span><br></pre></td></tr></table></figure>
+
+<p>然后修改 <code>themes\simpleblock\scripts\helpers.js</code> 文件第一行的代码：</p>
+<p>将 <code>const jade = require(&#39;jade&#39;);</code> 改为 <code>const jade = require(&#39;pug&#39;);</code></p>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li><strong>核心问题</strong>：Hexo 主题依赖的 <code>jade</code> 模块未安装，导致脚本加载失败。</li>
+<li><strong>解决方案</strong>：通过 <code>npm install jade --save</code> 安装缺失的模块即可解决。</li>
+<li><strong>备选方案</strong>：若 <code>jade</code> 兼容性有问题，可替换为新版 <code>pug</code> 并修改主题引用代码。</li>
+</ol>
+</div></article></div></main><footer><div class="paginator"><a class="next" href="/2026/03/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87Hexo%E6%96%87%E7%AB%A0/">next</a></div><div class="copyright"><p>&copy; © 2016-2026 - 2026 <a href="http://www.baidu.com">devin</a><br>Powered by <a href="https://www.baidu.com/" rel="noreferrer" target="_blank">DEGEAPPLE</a></p></div></footer></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
+    Barba.Pjax.start()
+})</script></body></html>

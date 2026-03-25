@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>mysql两表合并语法介绍 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="原始sql：
+1234567891011121314151617SELECT            tp.id,            tp.insert_time        FROM        (            SELECT                id,                insert_time            FROM                t" />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="mysql两表合并语法介绍 | Devin的博客" />
+<meta property="og:description" content="原始sql：
+1234567891011121314151617SELECT            tp.id,            tp.insert_time        FROM        (            SELECT                id,                insert_time            FROM                t" />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2026/03/25/MySql%E4%B8%A4%E8%A1%A8%E5%90%88%E5%B9%B6%E8%AF%AD%E6%B3%95%E4%BB%8B%E7%BB%8D/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-page.jpg" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/sql" data-name="SQL相关">SQL相关</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a target="_blank" rel="noopener" href="http://localhost:4000" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2026-03-25T13:54:34.000+08:00">最后编辑于&nbsp;2026-03-25</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2026/03/25/MySql%E4%B8%A4%E8%A1%A8%E5%90%88%E5%B9%B6%E8%AF%AD%E6%B3%95%E4%BB%8B%E7%BB%8D/" itemprop="mainEntityOfPage"><span itemprop="headline">MySql两表合并语法介绍</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计1675个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <p>原始sql：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">            tp.id,</span><br><span class="line">            tp.insert_time</span><br><span class="line">        FROM</span><br><span class="line">        (</span><br><span class="line">            SELECT</span><br><span class="line">                id,</span><br><span class="line">                insert_time</span><br><span class="line">            FROM</span><br><span class="line">                tender_project</span><br><span class="line">            UNION ALL</span><br><span class="line">            SELECT</span><br><span class="line">                id,</span><br><span class="line">                insert_time</span><br><span class="line">            FROM</span><br><span class="line">                tp_purchase_gov</span><br><span class="line">        ) AS tp  </span><br></pre></td></tr></table></figure>
+
+<p>这段 SQL 的核心是<strong>合并两张表的数据</strong>，最终返回一个包含两列的结果集，具体如下：</p>
+<h4 id="1-结果集的结构"><a href="#1-结果集的结构" class="headerlink" title="1. 结果集的结构"></a>1. 结果集的结构</h4><p>最终返回的结果只有两列：</p>
+<ul>
+<li><code>id</code>：来自 <code>tender_project</code> 或 <code>tp_purchase_gov</code> 表的 id 字段</li>
+<li><code>insert_time</code>：对应 id 记录的插入时间（来自同一张表的 insert_time 字段）</li>
+</ul>
+<h4 id="2-数据来源与合并规则"><a href="#2-数据来源与合并规则" class="headerlink" title="2. 数据来源与合并规则"></a>2. 数据来源与合并规则</h4><ul>
+<li><p>首先执行子查询中的 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNION ALL</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一步：从 <code>tender_project</code> 表中取出<strong>所有行</strong>的 <code>id</code> 和 <code>insert_time</code></li>
+<li>第二步：从 <code>tp_purchase_gov</code> 表中取出<strong>所有行</strong>的 <code>id</code> 和 <code>insert_time</code></li>
+<li>第三步：用 <code>UNION ALL</code> 将这两部分数据<strong>完整合并</strong>（包括重复数据，且不排序）</li>
+</ul>
+</li>
+<li><p>外层查询只是将子查询的结果直接输出（相当于 “透传”，没有额外过滤 &#x2F; 加工）</p>
+</li>
+</ul>
+<h4 id="3-关键特性（新手易混淆点）"><a href="#3-关键特性（新手易混淆点）" class="headerlink" title="3. 关键特性（新手易混淆点）"></a>3. 关键特性（新手易混淆点）</h4><ul>
+<li><code>UNION ALL</code> 不会去重：如果两张表中有相同的 <code>id + insert_time</code> 组合，结果集中会同时保留，这是和 <code>UNION</code>（会自动去重）的核心区别。</li>
+<li>结果集的顺序：默认是先显示 <code>tender_project</code> 的所有数据，再显示 <code>tp_purchase_gov</code> 的所有数据（数据库底层存储顺序可能影响最终顺序，如需固定顺序需加 <code>ORDER BY</code>）。</li>
+<li>无过滤条件：会返回两张表的<strong>全部行</strong>（只要表中有数据），没有 WHERE 条件限制。</li>
+</ul>
+<h4 id="示例（直观理解）"><a href="#示例（直观理解）" class="headerlink" title="示例（直观理解）"></a>示例（直观理解）</h4><p>假设：</p>
+<ul>
+<li><p><code>tender_project</code> 表数据：</p>
+<p>表格</p>
+<table>
+<thead>
+<tr>
+<th align="center">id</th>
+<th align="center">insert_time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">101</td>
+<td align="center">2026-03-20 10:00:00</td>
+</tr>
+<tr>
+<td align="center">102</td>
+<td align="center">2026-03-21 11:00:00</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>tp_purchase_gov</code> 表数据：</p>
+<p>表格</p>
+<table>
+<thead>
+<tr>
+<th align="center">id</th>
+<th align="center">insert_time</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">201</td>
+<td align="center">2026-03-20 14:00:00</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">101</td>
+<td align="center">2026-03-20 10:00:00</td>
+<td align="center">（和第一张表的 101 重复）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>执行这段 SQL 后的结果：</p>
+<p>表格</p>
+<table>
+<thead>
+<tr>
+<th align="center">id</th>
+<th align="center">insert_time</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">101</td>
+<td align="center">2026-03-20 10:00:00</td>
+<td align="center">（来自 tender_project）</td>
+</tr>
+<tr>
+<td align="center">102</td>
+<td align="center">2026-03-21 11:00:00</td>
+<td align="center">（来自 tender_project）</td>
+</tr>
+<tr>
+<td align="center">201</td>
+<td align="center">2026-03-20 14:00:00</td>
+<td align="center">（来自 tp_purchase_gov）</td>
+</tr>
+<tr>
+<td align="center">101</td>
+<td align="center">2026-03-20 10:00:00</td>
+<td align="center">（来自 tp_purchase_gov，重复保留）</td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>最终结果是合并 <code>tender_project</code> 和 <code>tp_purchase_gov</code> 两张表的 <code>id</code>、<code>insert_time</code> 字段，返回所有行（包括重复数据）。</li>
+<li>结果集仅包含 <code>id</code> 和 <code>insert_time</code> 两列，无任何过滤、去重或排序。</li>
+<li><code>UNION ALL</code> 是核心，保证了数据完整合并且效率高于 <code>UNION</code>（无需去重）。</li>
+</ol>
+<p>如果需要去重，可将 <code>UNION ALL</code> 改为 <code>UNION</code>；如果需要排序，可在最后加 <code>ORDER BY tp.insert_time</code>。</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/sql/">SQL相关</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

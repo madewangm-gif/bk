@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>sql映射文件之自定义映射元素 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="SQL映射文件之自定义映射元素前言C： 在上一篇，笔者带大家对 MyBatis SQL 映射文件的 insert、update、delete元素做了介绍。到此，CRUD 的基本操作我们就介绍完了。本篇，笔者将带你学习 MyBatis SQL 映射文件的 resultMap 元素，它是 MyBatis 中号称”最强”的元素。有多强？容易令人头秃。
+
+resultMap元素要介绍 resultMap" />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="sql映射文件之自定义映射元素 | Devin的博客" />
+<meta property="og:description" content="SQL映射文件之自定义映射元素前言C： 在上一篇，笔者带大家对 MyBatis SQL 映射文件的 insert、update、delete元素做了介绍。到此，CRUD 的基本操作我们就介绍完了。本篇，笔者将带你学习 MyBatis SQL 映射文件的 resultMap 元素，它是 MyBatis 中号称”最强”的元素。有多强？容易令人头秃。
+
+resultMap元素要介绍 resultMap" />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2020/12/28/06-SQL%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84%E5%85%83%E7%B4%A0/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="Devin" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2020-12-28T00:07:00.000+08:00">最后编辑于&nbsp;2020-12-28</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2020/12/28/06-SQL%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84%E5%85%83%E7%B4%A0/" itemprop="mainEntityOfPage"><span itemprop="headline">SQL映射文件之自定义映射元素</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计9342个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <h1 id="SQL映射文件之自定义映射元素"><a href="#SQL映射文件之自定义映射元素" class="headerlink" title="SQL映射文件之自定义映射元素"></a>SQL映射文件之自定义映射元素</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>C：</strong> 在上一篇，笔者带大家对 MyBatis SQL 映射文件的 insert、update、delete元素做了介绍。到此，CRUD 的基本操作我们就介绍完了。本篇，笔者将带你学习 MyBatis SQL 映射文件的 resultMap 元素，它是 MyBatis 中号称”最强”的元素。有多强？容易令人头秃。</p>
+<p><img src="/../../../public/img/2020/12/28/202012281130648.jpg" alt="202012281130648"></p>
+<h2 id="resultMap元素"><a href="#resultMap元素" class="headerlink" title="resultMap元素"></a>resultMap元素</h2><p>要介绍 resultMap 元素，那必然要先详细提一下 resultType 属性。</p>
+<h3 id="resultType属性"><a href="#resultType属性" class="headerlink" title="resultType属性"></a>resultType属性</h3><p>在 select 元素中，我们一直在使用 resultType 属性，我们可以用它来指定 SQL 查询完后的 ResultSet（结果集）到底映射为哪种类型。</p>
+<p>下方的示例中，resultType 代表的就是将查询回来的所有结果数据映射为User类型的对象。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    select </span><br><span class="line">        id, name, age, email</span><br><span class="line">    from</span><br><span class="line">        user</span><br><span class="line">    where </span><br><span class="line">        id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>MyBatis 会按照 SQL 查询出的结果数据的列名或别名来映射。</p>
+<p><img src="/../../../public/img/2020/12/28/202012281131280.png" alt="202012281131280"></p>
+<p>如果列名和属性名不能匹配上，可以在 SELECT 语句中设置列别名来完成匹配，效果如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    select </span><br><span class="line">        id, name as username, age, email</span><br><span class="line">    where </span><br><span class="line">        id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../public/img/2020/12/28/202012281131380.png" alt="202012281131380"></p>
+<h3 id="简单自定义映射"><a href="#简单自定义映射" class="headerlink" title="简单自定义映射"></a>简单自定义映射</h3><p>在学习了上面的知识后，你会发现上面的例子没有一个需要显式配置 <code>ResultMap</code>，这就是 <code>ResultMap</code> 的优秀之处：你完全可以不用显式地配置它们。</p>
+<p>::: tip 笔者说<br>实际上 <code>resultType</code> 属性的实现原理就是 <code>ResultMap</code>， MyBatis 在幕后会自动创建一个 <code>ResultMap</code>，再根据属性名来映射列到 JavaBean 的属性上。所以记得注意 <strong>二者不能同时存在</strong> 。<br>:::</p>
+<p>虽然上面的例子不用显式配置 <code>ResultMap</code>，但为了讲解，我们来看看如果在刚刚的示例中，显式使用外部的 <code>resultMap</code> 会怎样，这也是解决列名不匹配的另外一种方式。[1]</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    自定义映射</span></span><br><span class="line"><span class="comment">        id属性：resultMap的唯一标识</span></span><br><span class="line"><span class="comment">        type属性：要映射为的Java类型全限定类名或别名</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;userMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">        用来映射主键列，可以帮助提高整体性能（建议配置）</span></span><br><span class="line"><span class="comment">            property：Java类型的属性名</span></span><br><span class="line"><span class="comment">            column：结果集的列名或别名</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 用来映射普通列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;name&quot;</span> <span class="attr">property</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;userMap&quot;</span>&gt;</span></span><br><span class="line">    select </span><br><span class="line">        id, name, age, email</span><br><span class="line">    from</span><br><span class="line">        user</span><br><span class="line">    where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>::: tip 笔者说<br>在简单自定义映射时，我们仅仅需要对结果集列名和类属性名不一致的情况作映射规则指定，其他一致的，MyBatis 依然可以帮助我们自动映射好。<br>但是当出现复杂的自定义映射时，MyBatis 将会进入映射”罢工”状态，未指明自定义映射规则的部分将不再进行自动映射，看看下方的例子吧。<br>:::</p>
+<h3 id="复杂自定义映射-难点"><a href="#复杂自定义映射-难点" class="headerlink" title="复杂自定义映射[难点]"></a>复杂自定义映射[难点]</h3><p>除了上述简单的自定义映射元素外，在 resultMap 元素中，还有两个用于进行复杂映射的子元素（多表操作）：</p>
+<ul>
+<li><p><strong>association</strong> 映射到 JavaBean 的某个“复杂类型”属性，例如：JavaBean类</p>
+</li>
+<li><p><strong>collection</strong> 映射到 JavaBean 的某个“复杂类型”属性，例如：集合</p>
+</li>
+</ul>
+<p>我们通过两个案例分别体会一下这两个子元素。</p>
+<h4 id="association案例"><a href="#association案例" class="headerlink" title="association案例"></a>association案例</h4><p><strong>案例需求：根据ID查询用户信息，同时将该用户的角色信息也查询出来。</strong> </p>
+<p>刚才我们做了那么多练习，数据库搞的太乱了，<strong>我们先重置回 MyBatis 第一篇的数据库</strong> ，并做一些数据库上的调整。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建并初始化数据表 role</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> `role`  (</span><br><span class="line">  `id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;主键&#x27;</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">CHARACTER SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;角色名&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY KEY</span> (`id`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB AUTO_INCREMENT <span class="operator">=</span> <span class="number">3</span> <span class="keyword">CHARACTER SET</span> <span class="operator">=</span> utf8 <span class="keyword">COLLATE</span> <span class="operator">=</span> utf8_general_ci COMMENT <span class="operator">=</span> <span class="string">&#x27;角色表&#x27;</span> ROW_FORMAT <span class="operator">=</span> Compact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT INTO</span> `role` <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;超级管理员&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> `role` <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;普通管理员&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 为 user 表添加 roleId 列</span></span><br><span class="line"><span class="keyword">ALTER TABLE</span> `<span class="keyword">user</span>` <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `roleId` <span class="type">bigint</span>(<span class="number">0</span>) <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;角色id&#x27;</span>;</span><br><span class="line"><span class="comment">-- 为 user 表做一些角色修改</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> roleId <span class="operator">=</span> <span class="number">1</span> <span class="keyword">WHERE</span> id <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">3</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> roleId <span class="operator">=</span> <span class="number">2</span> <span class="keyword">WHERE</span> id <span class="operator">&gt;</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>根据数据库改动，创建及改动 POJO：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 角色 POJO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Charles7c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Role</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">// 省略 getter/setter 、toString</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户 POJO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Charles7c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> Long roleId;</span><br><span class="line">    <span class="comment">// 角色对象属性</span></span><br><span class="line">    <span class="keyword">private</span> Role role;</span><br><span class="line">    <span class="comment">// 省略 getter/setter 、toString</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改造好数据库之后，我们直接来改造一下 SQL 映射文件中的对应查询。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;userMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 复杂的类型关联：一对一映射，映射对象属性</span></span><br><span class="line"><span class="comment">            property：对象属性在映射类中的名字</span></span><br><span class="line"><span class="comment">            javaType：对象属性的类型全限定类名或别名</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">&quot;role&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;Role&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 和外层的映射一样的，&quot;俄罗斯套娃&quot; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;rid&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;rname&quot;</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;userMap&quot;</span>&gt;</span></span><br><span class="line">    select </span><br><span class="line">        u.*,</span><br><span class="line">        r.id as rid,</span><br><span class="line">        r.name as rname</span><br><span class="line">    from</span><br><span class="line">        user u</span><br><span class="line">        left join role r on u.roleId = r.id</span><br><span class="line">    where u.id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../public/img/2020/12/28/202012281132193.png" alt="202012281132193"></p>
+<p>测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestMyBatis</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSelectById</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取SqlSession对象</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.openSession()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取 Mapper 接口</span></span><br><span class="line">            <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">            <span class="comment">// 执行 SQL</span></span><br><span class="line">            <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userMapper.selectById(<span class="number">2L</span>);</span><br><span class="line">			</span><br><span class="line">            System.out.println(user);</span><br><span class="line">            System.out.println(user.getRole());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>控制台输出：</strong> </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 输出的 SQL 语句</span></span><br><span class="line"><span class="keyword">select</span> u.<span class="operator">*</span>, r.id <span class="keyword">as</span> rid, r.name <span class="keyword">as</span> rname <span class="keyword">from</span> <span class="keyword">user</span> u <span class="keyword">left</span> <span class="keyword">join</span> role r <span class="keyword">on</span> u.roleId <span class="operator">=</span> r.id <span class="keyword">where</span> u.id <span class="operator">=</span> ?</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User [id=2, name=null, age=null, email=null]</span><br><span class="line">Role [id=1, name=超级管理员]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>看看这结果，MyBatis 映射是不是”罢工”了？解决方法有两种：</p>
+<ol>
+<li><p>挨个的把所有结果集列与对应类属性映射好</p>
+</li>
+<li><p>在 MyBatis 核心配置文件中，更改自动映射的默认级别</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 自动映射行为设置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;autoMappingBehavior&quot;</span> <span class="attr">value</span>=<span class="string">&quot;FULL&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再来试试，看看控制台输出的结果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User [id=2, name=Jack, age=20, email=Jack@126.com]</span><br><span class="line">Role [id=1, name=超级管理员]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="collection案例"><a href="#collection案例" class="headerlink" title="collection案例"></a>collection案例</h4><p><strong>案例需求：根据ID查询用户信息，同时将该用户的联系人列表也查询出来。</strong> </p>
+<p>我们再来做一些数据库上的调整。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建并初始化数据表 linkuser</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> `linkuser`  (</span><br><span class="line">  `id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;主键&#x27;</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">CHARACTER SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;联系人名&#x27;</span>,</span><br><span class="line">  `phone` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">CHARACTER SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;联系电话&#x27;</span>,</span><br><span class="line">  `address` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">CHARACTER SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;联系地址&#x27;</span>,</span><br><span class="line">  `userId` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户id&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY KEY</span> (`id`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB AUTO_INCREMENT <span class="operator">=</span> <span class="number">3</span> <span class="keyword">CHARACTER SET</span> <span class="operator">=</span> utf8 <span class="keyword">COLLATE</span> <span class="operator">=</span> utf8_general_ci COMMENT <span class="operator">=</span> <span class="string">&#x27;联系人表&#x27;</span> ROW_FORMAT <span class="operator">=</span> Compact;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT INTO</span> `linkuser` <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;张三&#x27;</span>, <span class="string">&#x27;18822233311&#x27;</span>, <span class="string">&#x27;北京西城区&#x27;</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> `linkuser` <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;李四&#x27;</span>, <span class="string">&#x27;18822233322&#x27;</span>, <span class="string">&#x27;北京东城区&#x27;</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p>根据数据库改动，创建及改动 POJO：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 联系人 POJO</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Charles7c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LinkUser</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> Long userId;</span><br><span class="line">    <span class="comment">// 省略 getter/setter 、toString</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户 POJO</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Charles7c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> Long roleId;</span><br><span class="line">    <span class="comment">// 角色对象属性</span></span><br><span class="line">    <span class="keyword">private</span> Role role;</span><br><span class="line">    <span class="comment">// 联系人列表</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;LinkUser&gt; linkUserList;</span><br><span class="line">    <span class="comment">// 省略 getter/setter 、toString</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改造好数据库之后，我们直接来改造一下 SQL 映射文件中的对应查询。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;userMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 复杂类型集合，一对多，映射集合属性</span></span><br><span class="line"><span class="comment">            property：集合属性在映射类中的名字</span></span><br><span class="line"><span class="comment">            ofType：集合属性的泛型全限定类名或别名</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;linkUserList&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;LinkUser&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;lkuid&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;lkuname&quot;</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;lkuphone&quot;</span> <span class="attr">property</span>=<span class="string">&quot;phone&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;lkuaddress&quot;</span> <span class="attr">property</span>=<span class="string">&quot;address&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;userMap&quot;</span>&gt;</span></span><br><span class="line">    select </span><br><span class="line">        u.*,</span><br><span class="line">        lku.id as lkuid,</span><br><span class="line">        lku.name as lkuname,</span><br><span class="line">        lku.phone as lkuphone,</span><br><span class="line">        lku.address as lkuaddress</span><br><span class="line">    from</span><br><span class="line">        user u</span><br><span class="line">        left join linkuser lku on u.id = lku.userId</span><br><span class="line">    where </span><br><span class="line">        u.id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../public/img/2020/12/28/202012281133167.png" alt="202012281133167"></p>
+<p>测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestMyBatis</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSelectById</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取SqlSession对象</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.openSession()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取 Mapper 接口</span></span><br><span class="line">            <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">            <span class="comment">// 执行 SQL</span></span><br><span class="line">            <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userMapper.selectById(<span class="number">2L</span>);</span><br><span class="line">			</span><br><span class="line">            System.out.println(user);</span><br><span class="line">			</span><br><span class="line">            user.getLinkUserList().forEach(System.out::println);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>控制台输出：</strong> </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 输出的 SQL 语句</span></span><br><span class="line"><span class="keyword">select</span> u.<span class="operator">*</span>, lku.id <span class="keyword">as</span> lkuid, lku.name <span class="keyword">as</span> lkuname, lku.phone <span class="keyword">as</span> lkuphone, lku.address <span class="keyword">as</span> lkuaddress <span class="keyword">from</span> <span class="keyword">user</span> u <span class="keyword">left</span> <span class="keyword">join</span> linkuser lku <span class="keyword">on</span> u.id <span class="operator">=</span> lku.userId <span class="keyword">where</span> u.id <span class="operator">=</span> ?</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User [id=2, name=Jack, age=20, email=Jack@126.com]</span><br><span class="line">LinkUser [id=1, name=张三, phone=18822233311, address=北京西城区, userId=null]</span><br><span class="line">LinkUser [id=2, name=李四, phone=18822233322, address=北京东城区, userId=null]</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]MyBatis 官网. XML 映射文件[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/sqlmap-xml.html">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html</a>. 2020-12-26</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>大多数人在学到复杂自定义映射时都容易犯迷糊，所以笔者说过如果要学习 Hibernate 框架，开局容易深入难，因为 Hibernate 这框架中经常要处理类似的映射，年轻人慢慢来，加油！</p>
+<p>::: info 笔者说<br>对于技术的学习，笔者一贯遵循的步骤是：先用最最简单的 demo 让它跑起来，然后学学它的最最常用 API 和 配置让自己能用起来，最后熟练使用的基础上，在空闲时尝试阅读它的源码让自己能够洞彻它的运行机制，部分问题出现的原因，同时借鉴这些技术实现来提升自己的代码高度。</p>
+<p>所以在笔者的文章中，前期基本都是小白文，仅仅穿插很少量的源码研究。当然等小白文更新多了，你们还依然喜欢，后期会不定时专门对部分技术的源码进行解析。<br>:::</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/MyBatis/">MyBatis</a>
+            
+            <a href="/tags/ORM%E6%A1%86%E6%9E%B6/">ORM框架</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

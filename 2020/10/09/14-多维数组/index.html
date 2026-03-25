@@ -1,0 +1,439 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>多维数组 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="多维数组前言C： 上一篇，我们学习了数组的概念，并掌握了它的定义及基本使用方法。
+下面，我们再来看一个案例需求。
+案例需求：已知有3个班级各5名学员，请计算各个班级的总成绩。 
+根据需求及经验来分析，如果我们只是要计算单个班级的学生总成绩，那么定义一个普通数组，来存储这些成绩信息，再去计算即可。
+123// 存储一个班成绩double[] scores = new double[5];// ..." />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="多维数组 | Devin的博客" />
+<meta property="og:description" content="多维数组前言C： 上一篇，我们学习了数组的概念，并掌握了它的定义及基本使用方法。
+下面，我们再来看一个案例需求。
+案例需求：已知有3个班级各5名学员，请计算各个班级的总成绩。 
+根据需求及经验来分析，如果我们只是要计算单个班级的学生总成绩，那么定义一个普通数组，来存储这些成绩信息，再去计算即可。
+123// 存储一个班成绩double[] scores = new double[5];// ..." />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2020/10/09/14-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="Devin" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2020-10-09T15:30:00.000+08:00">最后编辑于&nbsp;2020-10-09</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2020/10/09/14-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/" itemprop="mainEntityOfPage"><span itemprop="headline">多维数组</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计8033个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <h1 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>C：</strong> 上一篇，我们学习了数组的概念，并掌握了它的定义及基本使用方法。</p>
+<p>下面，我们再来看一个案例需求。</p>
+<p><strong>案例需求：已知有3个班级各5名学员，请计算各个班级的总成绩。</strong> </p>
+<p>根据需求及经验来分析，如果我们只是要计算单个班级的学生总成绩，那么定义一个普通数组，来存储这些成绩信息，再去计算即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储一个班成绩</span></span><br><span class="line"><span class="type">double</span>[] scores = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>而现在需要计算三个班级的各自总成绩，按经验推导，应该先如下定义存储结构，然后分别计算。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储第一个班成绩</span></span><br><span class="line"><span class="type">double</span>[] scores1 = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">// 存储第二个班成绩</span></span><br><span class="line"><span class="type">double</span>[] scores2 = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">// 存储第三个班成绩</span></span><br><span class="line"><span class="type">double</span>[] scores3 = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>自然它也是可以实现需求的。但是，在本篇，笔者将带你学习一种更为高级的方式：多维数组。</p>
+<p><img src="/../../../public/img/2020/10/09/202010091457755.jpeg" alt="202010091457755"></p>
+<span id="more"></span>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>上一篇，我们学的用来存储多个数据的数组，它们被称为一维数组。</p>
+<p>多维数组，类似于前面学过的嵌套 if、嵌套循环。笔者觉得，你也可以把多维数组称之为 “嵌套数组”。</p>
+<p>它的常见表现形式有：二维数组、三维数组。</p>
+<p>::: tip 笔者说<br>二维数组：是以 一维数组 作为 数组元素 的数组，即 “数组的数组”。[1]  </p>
+<p>三维数组：是以 二维数组 作为 数组元素 的数组。<br>:::</p>
+<p>有点拗口，定义向绕口令一样，分明就是 “俄罗斯套娃” 么。</p>
+<p><img src="/../../../public/img/2020/10/09/202010091457896.png" alt="202010091457896"></p>
+<p>不过在使用多维数组前，需要再强化些概念理解：</p>
+<ul>
+<li>一般来讲，主要使用的是二维数组，三维及以上使用较少（ <strong>本篇笔者也主要介绍二维数组的使用</strong> ）</li>
+<li>从语法上来看，Java 支持多维数组的写法</li>
+<li>从内存分配原理的角度上来看，它们都是一维数组而已</li>
+</ul>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p>传统的一维数组的声明和赋值方式，我们都是掌握的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明语法：数据类型[] 数组名 = new 数据类型[数组容量];</span></span><br><span class="line"><span class="comment">// 例如：存储5名学生成绩：</span></span><br><span class="line"><span class="comment">//    数组存储的元素：成绩</span></span><br><span class="line"><span class="comment">//    数组元素的数据类型：double</span></span><br><span class="line"><span class="comment">//    数组的容量(要存储的成绩数量)：5</span></span><br><span class="line"><span class="type">double</span>[] scores = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值语法：数组名[下标] = 元素值;</span></span><br><span class="line">scores[<span class="number">0</span>] = <span class="number">90</span>;</span><br><span class="line">scores[<span class="number">1</span>] = <span class="number">80</span>;</span><br><span class="line">scores[<span class="number">2</span>] = <span class="number">70</span>;</span><br><span class="line">scores[<span class="number">3</span>] = <span class="number">60</span>;</span><br><span class="line">scores[<span class="number">4</span>] = <span class="number">50</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../public/img/2020/10/09/202010091458322.png" alt="202010091458322"></p>
+<p>二维数组本质上就是一维数组，只不过是以 一维数组 作为 数组元素 的数组。我们可以把二维数组分成外维数组及内维数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明二维数组</span></span><br><span class="line"><span class="comment">// 语法</span></span><br><span class="line">数据类型[][] 数组名 = <span class="keyword">new</span> 数据类型[外维数组容量][内维数组容量];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给二维数组赋值</span></span><br><span class="line"><span class="comment">// 语法</span></span><br><span class="line">数组名[外维数组下标][内维数组下标] = 元素值;</span><br></pre></td></tr></table></figure>
+
+<p>我们结合着二维数组的语法，来初步实现下前言中的需求。</p>
+<p>::: details 案例需求：存储3个班各5名学生成绩。</p>
+<p><strong>思路分析：</strong> </p>
+<ol>
+<li><p>根据需求，由于要存储的两组数据有包含关系，采用二维数组更为合适</p>
+</li>
+<li><p>确定数组的各个组成</p>
+<ul>
+<li><p>外维数组：</p>
+<ul>
+<li><p>数组元素：班级</p>
+</li>
+<li><p>数组元素类型：double[]</p>
+</li>
+<li><p>数组容量：5</p>
+</li>
+</ul>
+</li>
+<li><p>内维数组：</p>
+<ul>
+<li>数组元素：成绩</li>
+<li>数组元素类型：double</li>
+<li>数组容量：3</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>根据数组组成，套用方式一的数组语法实现<br>:::</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明一个二维数组     </span></span><br><span class="line"><span class="type">double</span>[][] scores = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给二维数组赋值</span></span><br><span class="line"><span class="comment">// 第1个班</span></span><br><span class="line">scores[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">90</span>; <span class="comment">// 第1个班的第1个同学成绩为90</span></span><br><span class="line">scores[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">80</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">2</span>] = <span class="number">70</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">3</span>] = <span class="number">60</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">4</span>] = <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 第2个班</span></span><br><span class="line">scores[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">90</span>;</span><br><span class="line">scores[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">90</span>;</span><br><span class="line">scores[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">80</span>;</span><br><span class="line">scores[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">70</span>;</span><br><span class="line">scores[<span class="number">1</span>][<span class="number">4</span>] = <span class="number">65</span>;</span><br><span class="line"><span class="comment">// 第3个班</span></span><br><span class="line">scores[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">85</span>;</span><br><span class="line">scores[<span class="number">2</span>][<span class="number">1</span>] = <span class="number">70</span>;</span><br><span class="line">scores[<span class="number">2</span>][<span class="number">2</span>] = <span class="number">75</span>;</span><br><span class="line">scores[<span class="number">2</span>][<span class="number">3</span>] = <span class="number">80</span>;</span><br><span class="line">scores[<span class="number">2</span>][<span class="number">4</span>] = <span class="number">60</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../public/img/2020/10/09/202010091458868.png" alt="202010091458868"></p>
+<p>::: tip 笔者说<br>虽然数组有些特别，不像之前学的基本数据类型：int、double..。但数组也是一种数据类型，所以 “别拿豆包不当干粮，别拿数组不当数据类型” 。<br>:::</p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><p>在定义二维数组时，内维数组容量不是必须立刻指定的，还可以这样写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[][] 数组名 = <span class="keyword">new</span> 数据类型[外维数组容量][内维数组容量];</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例需求：存储三个班学生成绩，1班有5个学生，2班有3个学生，3班有2个学生。</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明一个二维数组</span></span><br><span class="line"><span class="type">double</span>[][] scores = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">3</span>][];</span><br><span class="line"><span class="comment">// 声明内维数组</span></span><br><span class="line">scores[<span class="number">0</span>] = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">5</span>]; <span class="comment">// 第一个班</span></span><br><span class="line">scores[<span class="number">1</span>] = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">3</span>]; <span class="comment">// 第二个班</span></span><br><span class="line">scores[<span class="number">2</span>] = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">2</span>]; <span class="comment">// 第三个班</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值语法：数组名[外维数组下标][内维数组下标] = 元素值;</span></span><br><span class="line"><span class="comment">// 第1个班</span></span><br><span class="line">scores[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">90</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">80</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">2</span>] = <span class="number">70</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">3</span>] = <span class="number">60</span>;</span><br><span class="line">scores[<span class="number">0</span>][<span class="number">4</span>] = <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 第2个班</span></span><br><span class="line">scores[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">90</span>;</span><br><span class="line">scores[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">90</span>;</span><br><span class="line">scores[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">80</span>;</span><br><span class="line"><span class="comment">// 第3个班</span></span><br><span class="line">scores[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">85</span>;</span><br><span class="line">scores[<span class="number">2</span>][<span class="number">1</span>] = <span class="number">70</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../public/img/2020/10/09/202010091458957.png" alt="202010091458957"></p>
+<h3 id="方式三"><a href="#方式三" class="headerlink" title="方式三"></a>方式三</h3><p>一维数组可以在声明时，实现直接赋值，二维数组自然也是可以的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储3个班各5名同学成绩</span></span><br><span class="line"><span class="comment">// 每个 &#123;&#125; 就是一个一维数组</span></span><br><span class="line"><span class="type">double</span>[][] scores = &#123;&#123;<span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">50</span>&#125;, &#123;<span class="number">90</span>, <span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">65</span>&#125;, &#123;<span class="number">85</span>, <span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>, <span class="number">60</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>另外它也支持下方的写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span>[][] scores = <span class="keyword">new</span> <span class="title class_">double</span>[][]&#123;&#123;<span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">50</span>&#125;, &#123;<span class="number">90</span>, <span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">65</span>&#125;, &#123;<span class="number">85</span>, <span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>, <span class="number">60</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态赋值及遍历"><a href="#动态赋值及遍历" class="headerlink" title="动态赋值及遍历"></a>动态赋值及遍历</h2><p>一维数组学习的时候，我们发现在数组赋值时是重复性、有规律性的。当时我们就用 Scanner 结合循环来优化了一下赋值过程，这样就拥有了动态赋值的能力。</p>
+<p>现在二维数组赋值虽然更为复杂，但是依然保有重复性、规律性，我们也可以用 Scanner 结合循环来优化一下。</p>
+<p><img src="/../../../public/img/2020/10/09/202010091459307.png" alt="202010091459307"></p>
+<p><strong>思路分析：</strong> </p>
+<ol>
+<li>根据效果图分析，它分别有两个规律性操作，采用二重循环<ul>
+<li>班级的规律</li>
+<li>每个班级的规律</li>
+</ul>
+</li>
+<li>循环要素<ul>
+<li><p>外层循环</p>
+<ul>
+<li>循环条件：<code>&lt; 外维数组的容量</code></li>
+<li>循环操作：内层循环</li>
+</ul>
+</li>
+<li><p>内层循环</p>
+<ul>
+<li>循环条件：<code>&lt; 内维数组的容量</code></li>
+<li>循环操作： 数组名[外层循环变量][内层循环变量] &#x3D; 输入的元素值;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>固定次数循环，采用 for 循环</li>
+<li>检查循环是否可以正常退出</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span>[][] scores = <span class="keyword">new</span> <span class="title class_">double</span>[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">input</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"><span class="comment">// 循环班级</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; scores.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 循环每个班级</span></span><br><span class="line">    System.out.println(<span class="string">&quot;开始录入第&quot;</span> + (i+<span class="number">1</span>) + <span class="string">&quot;个班的学生成绩：&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; scores[i].length; j++) &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;请输入&quot;</span> + (i+<span class="number">1</span>) + <span class="string">&quot;班的第&quot;</span> + (j+<span class="number">1</span>) + <span class="string">&quot;个学生的成绩：&quot;</span>);</span><br><span class="line">        scores[i][j] = input.nextDouble();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码就是二维数组的动态赋值方式。如果去除输入赋值环节后，它显然又是二维数组的遍历方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span>[][] scores = &#123;&#123;<span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">50</span>&#125;, &#123;<span class="number">90</span>, <span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">65</span>&#125;, &#123;<span class="number">85</span>, <span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>, <span class="number">60</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环班级</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; scores.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 循环每个班级</span></span><br><span class="line">    System.out.println((i+<span class="number">1</span>) + <span class="string">&quot;班的学生成绩如下：&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; scores[i].length; j++) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;第&quot;</span> + (j+<span class="number">1</span>) + <span class="string">&quot;个学生的成绩是：&quot;</span> + scores[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>控制台输出：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1班的学生成绩如下：</span><br><span class="line">第1个学生的成绩是：90.0</span><br><span class="line">第2个学生的成绩是：80.0</span><br><span class="line">第3个学生的成绩是：70.0</span><br><span class="line">第4个学生的成绩是：60.0</span><br><span class="line">第5个学生的成绩是：50.0</span><br><span class="line">2班的学生成绩如下：</span><br><span class="line">第1个学生的成绩是：90.0</span><br><span class="line">第2个学生的成绩是：90.0</span><br><span class="line">第3个学生的成绩是：80.0</span><br><span class="line">第4个学生的成绩是：70.0</span><br><span class="line">第5个学生的成绩是：65.0</span><br><span class="line">3班的学生成绩如下：</span><br><span class="line">第1个学生的成绩是：85.0</span><br><span class="line">第2个学生的成绩是：70.0</span><br><span class="line">第3个学生的成绩是：75.0</span><br><span class="line">第4个学生的成绩是：80.0</span><br><span class="line">第5个学生的成绩是：60.0</span><br></pre></td></tr></table></figure>
+
+<p>::: tip 笔者说<br>一维数组的时候，我们有两种遍历方式：1.循环下标遍历 2.增强 for循 环遍历。而二维数组的话，笔者建议你就采用循环下标方式即可，不要再去 “混合或者自造语法” 了。<br>:::</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>好了，介绍完二维数组的概念和定义方式，接下来我们完整的使用它，来完成前言中的案例需求。</p>
+<p><strong>案例需求：已知有3个班级各5名学员，请使用二维数组计算各个班级的总成绩。</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span>[][] scores = &#123;&#123;<span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">50</span>&#125;, &#123;<span class="number">90</span>, <span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">65</span>&#125;, &#123;<span class="number">85</span>, <span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>, <span class="number">60</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环班级</span></span><br><span class="line"><span class="comment">// 定义变量，记录每个班的总成绩</span></span><br><span class="line"><span class="type">double</span> sum;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; scores.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 每次都要初始化总成绩</span></span><br><span class="line">    sum = <span class="number">0</span>; </span><br><span class="line">    <span class="comment">// 循环每个班级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; scores[i].length; j++) &#123;</span><br><span class="line">        <span class="comment">// 累加成绩</span></span><br><span class="line">        sum += scores[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println((i+<span class="number">1</span>) + <span class="string">&quot;班的学生总成绩为：&quot;</span> + sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>控制台输出：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1班的学生总成绩为：350.0</span><br><span class="line">2班的学生总成绩为：395.0</span><br><span class="line">3班的学生总成绩为：370.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="Arrays工具类"><a href="#Arrays工具类" class="headerlink" title="Arrays工具类"></a>Arrays工具类</h2><p>有了数组之后，我们就可以实现非常多的算法需求。但很多算法需求中，部分功能都是类似的，我们重复的实现，重复的写。</p>
+<p><strong>例如：遍历输出数组的所有内容。</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String[] arr = &#123;<span class="string">&quot;佩奇&quot;</span>, <span class="string">&quot;乔治&quot;</span>, <span class="string">&quot;苏西&quot;</span>&#125;;</span><br><span class="line"><span class="comment">// 循环下标来实现数组遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    System.out.println(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而这一切，Java 创造团队们也考虑到了，他们给我们在 Java 类库中提供了一个工具类：<code>Arrays</code>。在这个类中，提供的都是操作数组的方法。</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>方法名称</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">toString(array) : String</td>
+<td>将一个数组 array 转换成一个字符串</td>
+</tr>
+<tr>
+<td align="left">equals(array1,array2) : boolean</td>
+<td>比较 array1 和 array2 两个数组是否相等</td>
+</tr>
+<tr>
+<td align="left">sort(array)  : void</td>
+<td>对数组 array 的元素进行升序排列</td>
+</tr>
+<tr>
+<td align="left">copyOf(array,length)  : newArray</td>
+<td>把数组 array 复制成一个长度为 length 的新数组，返回类型与复制的数组一致</td>
+</tr>
+<tr>
+<td align="left">…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p>它和我们曾经使用过的 Scanner 都在 <code>java.util</code> 包下，所以使用的话也需要先导入一下。</p>
+<p>::: tip 笔者说<br>Java 系统类库 java.util 包下的类都是工具类，使用前需要先 import。<br>:::</p>
+<p>看看下方，有了 Arrays，你只需要一行代码，就可以搞定一个数组的遍历输出操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> demo1;</span><br><span class="line"><span class="comment">// 1.导入 Arrays</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo1</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String[] arr = &#123;<span class="string">&quot;佩奇&quot;</span>, <span class="string">&quot;乔治&quot;</span>, <span class="string">&quot;苏西&quot;</span>&#125;;</span><br><span class="line">        <span class="comment">// 2.使用 Arrays(它不需要创建对象，直接可以用)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">arrStr</span> <span class="operator">=</span> Arrays.toString(arr);</span><br><span class="line">        System.out.println(arrStr); <span class="comment">// [佩奇, 乔治, 苏西]</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>再例如：要比较两个数组的内容是否相同。</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>[] charArr1 = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line"><span class="type">char</span>[] charArr2 = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line"><span class="comment">// 不使用 equals 方法，原生写法</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; charArr1.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (charArr1[i] != charArr2[i]) &#123;</span><br><span class="line">        flag = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;两个数组内容是否一致？&quot;</span> + flag);</span><br></pre></td></tr></table></figure>
+
+<p>而有了 Arrays，你只需要一行代码，就可以搞定两个数组的内容比较操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>[] charArr1 = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line"><span class="type">char</span>[] charArr2 = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line"><span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> Arrays.equals(charArr1, charArr2);</span><br><span class="line">System.out.println(<span class="string">&quot;两个数组内容是否一致？&quot;</span> + flag);</span><br></pre></td></tr></table></figure>
+
+<p>我们再来看看另外两个方法的使用示例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sort 方法</span></span><br><span class="line"><span class="type">int</span>[] arr1 = &#123;<span class="number">10</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line">Arrays.sort(arr1);</span><br><span class="line">System.out.println(Arrays.toString(arr1)); <span class="comment">// [7, 8, 9, 10, 11]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// copyOf 方法</span></span><br><span class="line"><span class="type">int</span>[] arr2 = &#123;<span class="number">10</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] newArr = Arrays.copyOf(arr2, arr2.length + <span class="number">1</span>);</span><br><span class="line">System.out.println(Arrays.toString(newArr)); <span class="comment">// [10, 9, 11, 7, 8, 0]</span></span><br></pre></td></tr></table></figure>
+
+<p>::: tip 笔者说<br>Arrays 工具类还有更多的数组操作方法，等以后需要使用时，笔者再告诉你。或者在未来你有需求时，也可以去查阅 Java 官方的 API 文档，来挑选适合你的数组操作方法。<br>:::</p>
+<h2 id="答题环节"><a href="#答题环节" class="headerlink" title="答题环节"></a>答题环节</h2><h3 id="统计销售额"><a href="#统计销售额" class="headerlink" title="统计销售额"></a>统计销售额</h3><p><strong>需求：统计一个公司三个销售小组中每个小组的 总销售额 以及 整个公司的销售额 。</strong> </p>
+<ol>
+<li><p>定义一个二维数组，存储三个销售小组的销售额。</p>
+</li>
+<li><p>第一小组销售额为{5, 10}万元，第二小组销售额为{10, 20, 30}万元，第三小组销售额为{10, 10, 20, 20}万元。</p>
+</li>
+<li><p>计算每个小组的总销售额和整个公司的销售额并输出。</p>
+</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]百度百科. 二维数组[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/8168543">https://baike.baidu.com/item/二维数组/8168543</a>. 2021.1.17</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这一篇，咱们还学到了一个 Arrays 工具类，是不是感觉一些数组操作也没那么难了？的确，有了这类工具类的加入，将会更方便我们日常的需求实现。</p>
+<p>但也别忘了自身内功的提升，如果以后没有合适的工具类，难道我们就不能自己写出来了吗？</p>
+<p>下一篇，我们将围绕数组进行一些排序算法学习，毕竟数据结构和算法不分家，算法中又以排序算法最为经典，期待一下吧。</p>
+<p>::: info 笔者说<br>对于技术的学习，笔者一贯遵循的步骤是：先用最最简单的 demo 让它跑起来，然后学学它的最最常用 API 和 配置让自己能用起来，最后熟练使用的基础上，在空闲时尝试阅读它的源码让自己能够洞彻它的运行机制，部分问题出现的原因，同时借鉴这些技术实现来提升自己的代码高度。</p>
+<p>所以在笔者的文章中，前期基本都是小白文，仅仅穿插很少量的源码研究。当然等小白文更新多了，你们还依然喜欢，后期会不定时专门对部分技术的源码进行解析。<br>:::</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/java/">Java</a>
+            
+            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

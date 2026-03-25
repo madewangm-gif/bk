@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>程序和计算机的那点事儿 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="程序和计算机的那点事儿前言C： 在上一篇，我们已经能够很熟练的使用 Eclipse 开发一个入门的 Java 程序，给计算机下达一些简单的指令。虽然它很简陋，但麻雀虽小，五脏俱全，你平时使用的程序们该有的，它也都有。
+按理说呢，我们接下来就要开始学习更多的 Java 指令（语法）了，但笔者担心你的基础还不够，所以还是想给你再加点“料”。
+在我们讲解下一篇 《变量和常量》前，我们先对计算机中的一些基" />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="程序和计算机的那点事儿 | Devin的博客" />
+<meta property="og:description" content="程序和计算机的那点事儿前言C： 在上一篇，我们已经能够很熟练的使用 Eclipse 开发一个入门的 Java 程序，给计算机下达一些简单的指令。虽然它很简陋，但麻雀虽小，五脏俱全，你平时使用的程序们该有的，它也都有。
+按理说呢，我们接下来就要开始学习更多的 Java 指令（语法）了，但笔者担心你的基础还不够，所以还是想给你再加点“料”。
+在我们讲解下一篇 《变量和常量》前，我们先对计算机中的一些基" />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2020/10/05/04-%E7%A8%8B%E5%BA%8F%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="Devin" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2020-10-05T23:18:00.000+08:00">最后编辑于&nbsp;2020-10-05</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2020/10/05/04-%E7%A8%8B%E5%BA%8F%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF/" itemprop="mainEntityOfPage"><span itemprop="headline">程序和计算机的那点事儿</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计1802个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <h1 id="程序和计算机的那点事儿"><a href="#程序和计算机的那点事儿" class="headerlink" title="程序和计算机的那点事儿"></a>程序和计算机的那点事儿</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>C：</strong> 在上一篇，我们已经能够很熟练的使用 Eclipse 开发一个入门的 Java 程序，给计算机下达一些简单的指令。虽然它很简陋，但麻雀虽小，五脏俱全，你平时使用的程序们该有的，它也都有。</p>
+<p>按理说呢，我们接下来就要开始学习更多的 Java 指令（语法）了，但笔者担心你的基础还不够，所以还是想给你再加点“料”。</p>
+<p>在我们讲解下一篇 《变量和常量》前，我们先对计算机中的一些基本概念，以及程序在计算机中安装、执行的原理来分析一下。</p>
+<span id="more"></span>
+
+<h2 id="计算机三大件"><a href="#计算机三大件" class="headerlink" title="计算机三大件"></a>计算机三大件</h2><p>我们现在使用的计算机，它是由很多的硬件组成的。但是一个程序要安装及运行，我们主要关注 <strong>三个</strong> 核心的硬件即可，它们分别是：</p>
+<table>
+<thead>
+<tr>
+<th align="center">CPU</th>
+<th align="center">RAM</th>
+<th align="center">ROM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">中央处理器，负责 <strong>处理数据</strong>／<strong>计算</strong>，是一块超大规模的集成电路。</td>
+<td align="center">内存，<strong>临时</strong> 存储数据（断电之后，数据会消失），速度快，空间小。  （单位价格高）</td>
+<td align="center">硬盘，<strong>永久</strong> 存储数据，速度慢，空间大。（单位价格低）</td>
+</tr>
+<tr>
+<td align="center"><img src="/../../../public/img/2020/10/05/202010052011277.jpeg" alt="202010052011277"></td>
+<td align="center"><img src="/../../../public/img/2020/10/05/202010052011666.png" alt="202010052011666"></td>
+<td align="center"><img src="/../../../public/img/2020/10/05/202010052012169.jpeg" alt="202010052012169"></td>
+</tr>
+</tbody></table>
+<p>我们可以拿车道的例子来理解它们三者的作用：</p>
+<ul>
+<li>CPU核心数：车道数量   </li>
+<li>内存：车道宽度     </li>
+<li>磁盘IO：车道限速</li>
+</ul>
+<p><img src="/../../../public/img/2020/10/05/202010052013521.png" alt="202010052013521"></p>
+<h2 id="案例分析：QQ程序"><a href="#案例分析：QQ程序" class="headerlink" title="案例分析：QQ程序"></a>案例分析：QQ程序</h2><p>结合着 QQ 程序，我们来捋一下一个程序从安装到运行的原理。</p>
+<h3 id="程序安装的原理"><a href="#程序安装的原理" class="headerlink" title="程序安装的原理"></a>程序安装的原理</h3><p>像我们以后，在开发好了程序之后，如果需要给客户来使用，就要准备好相应的程序包，否则到了客户电脑上，缺少程序所需的环境就无法运行程序了，例如：Java 程序至少需要配套一份 JRE 。</p>
+<p>我们在平时为了使用 QQ 程序，首先要做的就是下载一个对应的安装程序，然后通过安装程序来引导我们或自动将 QQ 的一系列程序文件解压并存储到 <strong>硬盘</strong> 的指定位置。</p>
+<p><img src="/../../../public/img/2020/10/05/202010052013602.png" alt="202010052013602"></p>
+<p><img src="/../../../public/img/2020/10/05/202010052013767.png" alt="202010052013767"></p>
+<p><img src="/../../../public/img/2020/10/05/202010052015666.png" alt="202010052015666"></p>
+<p><img src="/../../../public/img/2020/10/05/202010052016288.png" alt="202010052016288"></p>
+<p>::: tip 笔者说<br>安装程序&#x2F;引导安装程序，它们也是电脑程序，但它们诞生的目的是帮助普通用户快速实现程序的环境初始化、程序文件存储等过程的。<br>:::</p>
+<h3 id="程序执行的原理"><a href="#程序执行的原理" class="headerlink" title="程序执行的原理"></a>程序执行的原理</h3><p>安装好之后，而当要运行一个程序时，首先操作系统会让 <strong>CPU</strong> 将存储在 <strong>硬盘</strong> 中的程序文件们读取到 <strong>内存</strong> 中来，然后由 <strong>CPU</strong> 执行 <strong>内存</strong> 中的程序文件&#x2F;代码来处理数据。</p>
+<p><img src="/../../../public/img/2020/10/05/202010052017669.png" alt="202010052017669"></p>
+<p>::: tip 笔者说<br>每个程序在运行过程中都会在内存中”占据”一块属于自己的空间，而这块空间的大小及内存的总大小也是决定程序是否可以自如的”施展手脚”。  </p>
+<p>所以一般我们想要同时运行更多程序而不卡时，都优先考虑到买大内存的计算机。<br>:::</p>
+<p>当你在双击桌面的 QQ 快捷方式时，快捷方式会链接到对应位置的 QQ 程序，启动开始了。</p>
+<p><img src="/../../../public/img/2020/10/05/202010052017777.png" alt="202010052017777"></p>
+<p>然后 <strong>CPU</strong> 就会将存储在 <strong>硬盘</strong> 上的 QQ 程序文件加载到 <strong>内存</strong> 中，QQ 程序会在 <strong>内存</strong> 中占据一块自己的内存区域，然后由 <strong>CPU</strong> 执行 <strong>内存</strong> 中的 QQ 程序文件&#x2F;代码，于是就出现了下方的界面。</p>
+<p><img src="/../../../public/img/2020/10/05/202010052018229.png" alt="202010052018229"></p>
+<h3 id="程序内存中的数据管理"><a href="#程序内存中的数据管理" class="headerlink" title="程序内存中的数据管理"></a>程序内存中的数据管理</h3><p>当我们在 QQ 程序中点击过 “记住密码”，并且登录过一次后，我们再次打开 QQ 程序登录界面，会看到 QQ 号及密码直接回显在了输入框中。</p>
+<p>此时其实是在加载 QQ 程序文件到内存后，QQ 程序代码将保存在硬盘上的帐号数据恢复到了内存中，然后将它们再插入到输入框内。</p>
+<p><img src="/../../../public/img/2020/10/05/202010052019576.png" alt="202010052019576"></p>
+<p>那 QQ 这个程序是怎么保存用户的 <strong>QQ 号码</strong> 和 <strong>QQ 密码</strong> 的呢？</p>
+<ol>
+<li>在内存中为 <strong>QQ 号码</strong> 和 <strong>QQ 密码</strong> 各自分配一块空间<ul>
+<li>在 QQ 程序结束之前，这两块空间是由 QQ 程序负责管理的，其他任何程序都不允许使用</li>
+<li>在 QQ 自己使用完成之前，这两块空间始终都只负责保存 <strong>QQ 号码</strong> 和 <strong>QQ 密码</strong></li>
+</ul>
+</li>
+<li>另外为了能够方便找到该内存空间，分别使用一个 <strong>别名</strong> 标记 <strong>QQ 号码</strong> 和 <strong>QQ 密码</strong> 在内存中的位置</li>
+</ol>
+<p><img src="/../../../public/img/2020/10/05/202010052019666.png" alt="202010052019666"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>实际上，在程序内部，为 <strong>QQ 号码</strong> 和 <strong>QQ 密码</strong> 在内存中分配的空间就叫做 <strong>变量</strong>，这也是我们下一篇要介绍的主要内容！跟上别掉队！</p>
+<p><img src="/../../../public/img/2020/10/05/202010052020276.jpeg" alt="202010052020276"></p>
+<p>::: info 笔者说<br>对于技术的学习，笔者一贯遵循的步骤是：先用最最简单的 demo 让它跑起来，然后学学它的最最常用 API 和 配置让自己能用起来，最后熟练使用的基础上，在空闲时尝试阅读它的源码让自己能够洞彻它的运行机制，部分问题出现的原因，同时借鉴这些技术实现来提升自己的代码高度。</p>
+<p>所以在笔者的文章中，前期基本都是小白文，仅仅穿插很少量的源码研究。当然等小白文更新多了，你们还依然喜欢，后期会不定时专门对部分技术的源码进行解析。<br>:::</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/java/">Java</a>
+            
+            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

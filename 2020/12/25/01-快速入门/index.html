@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>快速入门 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="快速入门我们将通过一个简单的 Demo 来阐述 MyBatis 的强大功能，在此之前，笔者假设你已经：
+
+拥有 Java 开发环境以及相应 IDE（本 Demo 采用 Eclipse 作为IDE）
+熟悉 Java Web 开发流程
+熟悉至少一个关系型数据库（本 Demo 采用 MySQL 作为数据库）
+
+数据库准备现有一张 User 表，其表结构如下：
+
+
+
+主键
+姓名
+年龄
+邮箱
+
+
+
+1
+Jo" />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="快速入门 | Devin的博客" />
+<meta property="og:description" content="快速入门我们将通过一个简单的 Demo 来阐述 MyBatis 的强大功能，在此之前，笔者假设你已经：
+
+拥有 Java 开发环境以及相应 IDE（本 Demo 采用 Eclipse 作为IDE）
+熟悉 Java Web 开发流程
+熟悉至少一个关系型数据库（本 Demo 采用 MySQL 作为数据库）
+
+数据库准备现有一张 User 表，其表结构如下：
+
+
+
+主键
+姓名
+年龄
+邮箱
+
+
+
+1
+Jo" />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2020/12/25/01-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="Devin" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2020-12-25T14:49:00.000+08:00">最后编辑于&nbsp;2020-12-25</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2020/12/25/01-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" itemprop="mainEntityOfPage"><span itemprop="headline">快速入门</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计7326个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><p>我们将通过一个简单的 Demo 来阐述 MyBatis 的强大功能，在此之前，笔者假设你已经：</p>
+<ul>
+<li>拥有 Java 开发环境以及相应 IDE（本 Demo 采用 Eclipse 作为IDE）</li>
+<li>熟悉 Java Web 开发流程</li>
+<li>熟悉至少一个关系型数据库（本 Demo 采用 MySQL 作为数据库）</li>
+</ul>
+<h2 id="数据库准备"><a href="#数据库准备" class="headerlink" title="数据库准备"></a>数据库准备</h2><p>现有一张 <code>User</code> 表，其表结构如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">主键</th>
+<th align="center">姓名</th>
+<th align="center">年龄</th>
+<th align="center">邮箱</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">Jone</td>
+<td align="center">18</td>
+<td align="center"><a href="mailto:&#x4a;&#111;&#110;&#x65;&#64;&#x31;&#50;&#x36;&#46;&#x63;&#111;&#x6d;">&#x4a;&#111;&#110;&#x65;&#64;&#x31;&#50;&#x36;&#46;&#x63;&#111;&#x6d;</a></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">Jack</td>
+<td align="center">20</td>
+<td align="center"><a href="mailto:&#74;&#x61;&#99;&#107;&#x40;&#x31;&#x32;&#54;&#46;&#99;&#x6f;&#x6d;">&#74;&#x61;&#99;&#107;&#x40;&#x31;&#x32;&#54;&#46;&#99;&#x6f;&#x6d;</a></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">Tom</td>
+<td align="center">28</td>
+<td align="center"><a href="mailto:&#x54;&#111;&#x6d;&#x40;&#x31;&#50;&#x36;&#46;&#99;&#111;&#x6d;">&#x54;&#111;&#x6d;&#x40;&#x31;&#50;&#x36;&#46;&#99;&#111;&#x6d;</a></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">Sandy</td>
+<td align="center">21</td>
+<td align="center"><a href="mailto:&#83;&#97;&#110;&#100;&#121;&#64;&#x31;&#50;&#54;&#46;&#99;&#x6f;&#109;">&#83;&#97;&#110;&#100;&#121;&#64;&#x31;&#50;&#54;&#46;&#99;&#x6f;&#109;</a></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">Billie</td>
+<td align="center">24</td>
+<td align="center"><a href="mailto:&#66;&#105;&#108;&#108;&#105;&#101;&#x40;&#49;&#x32;&#54;&#x2e;&#x63;&#111;&#109;">&#66;&#105;&#108;&#108;&#105;&#101;&#x40;&#49;&#x32;&#54;&#x2e;&#x63;&#111;&#109;</a></td>
+</tr>
+</tbody></table>
+<p>其对应的数据库 结构 脚本如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建并切换数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE mybatis_demo_db;</span><br><span class="line">USE mybatis_demo_db;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建用户数据表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> `<span class="keyword">user</span>`  (</span><br><span class="line">  `id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;主键ID&#x27;</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">30</span>) <span class="keyword">CHARACTER SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">  `age` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line">  `email` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">CHARACTER SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY KEY</span> (`id`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB AUTO_INCREMENT <span class="operator">=</span> <span class="number">1</span> <span class="keyword">CHARACTER SET</span> <span class="operator">=</span> utf8 <span class="keyword">COLLATE</span> <span class="operator">=</span> utf8_general_ci COMMENT <span class="operator">=</span> <span class="string">&#x27;用户表&#x27;</span> ROW_FORMAT <span class="operator">=</span> Compact;</span><br></pre></td></tr></table></figure>
+
+<p>其对应的数据库 数据 脚本如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 清空用户表数据</span></span><br><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 向用户表插入测试数据</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> `<span class="keyword">user</span>` <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;Jone&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Jone@126.com&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> `<span class="keyword">user</span>` <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;Jack&#x27;</span>, <span class="number">20</span>, <span class="string">&#x27;Jack@126.com&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> `<span class="keyword">user</span>` <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">&#x27;Tom&#x27;</span>, <span class="number">28</span>, <span class="string">&#x27;Tom@126.com&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> `<span class="keyword">user</span>` <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">&#x27;Sandy&#x27;</span>, <span class="number">21</span>, <span class="string">&#x27;Sandy@126.com&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> `<span class="keyword">user</span>` <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="string">&#x27;Billie&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;Billie@126.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h2><p>要使用 MyBatis 框架，第一步就是下载好 MyBatis 的 jar 包，我们可以从 <a target="_blank" rel="noopener" href="https://github.com/mybatis/mybatis-3/releases">MyBatis</a> 在 GitHub 上的开源地址下载。</p>
+<p><img src="/../../../public/img/2020/12/25/202012252222518.png" alt="202012252222518"></p>
+<p>笔者下载了 MyBatis 的核心压缩包（mybatis-x.x.x.zip）及其源码包（mybatis-x-mybatis-x.x.x.zip）。</p>
+<p><img src="/../../../public/img/2020/12/25/202012252222738.png" alt="202012252222738"></p>
+<p>解压开 <strong>mybatis-3.5.6.zip</strong> 压缩包，目录结构如下：</p>
+<p><img src="/../../../public/img/2020/12/25/202012252222812.png" alt="202012252222812"></p>
+<p>::: tip 笔者说<br>如果 GitHub 下载太慢，可以前往 <a target="_blank" rel="noopener" href="https://hub.fastgit.org/mybatis/mybatis-3/releases/tag/mybatis-3.5.6">FastGit</a> 进行下载，它是 GitHub 的镜像地址，网站界面等各方面与 GitHub 几乎一模一样。<br>但是注意它仅仅是一个镜像网站，可以用于克隆或下载 GitHub 资源，但登录之类的功能是不可用的。<br>:::</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>下载好依赖之后，我们通过 Eclipse，创建一个动态 Web 项目，并将刚才下载的 jar 包和指定数据库驱动包添加到 WebConent\WEB-INF\lib 目录，效果如下：</p>
+<p><img src="/../../../public/img/2020/12/25/202012252223067.png" alt="202012252223067"></p>
+<p>::: tip 笔者说<br>本次我们不会使用到 Servlet API，所以创建一个普通 Java 工程也没问题。<br>:::</p>
+<h2 id="创建POJO类"><a href="#创建POJO类" class="headerlink" title="创建POJO类"></a>创建POJO类</h2><p>在 DAO 模式开发中，第一步就是要创建实体类，而在 MyBatis 项目中，实体类”弱化”为了 POJO，这种类型是专门用于和数据库做映射的 Java 类型，数据表中的列与 POJO 类型的属性一 一对应。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.pojo;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户POJO类（它是Java和关系数据库表映射的类型）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Charles7c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter/setter方法</span></span><br><span class="line">    <span class="comment">// 省略toString方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>::: tip 笔者说<br>POJO（Plain Old Java Objects，普通老式 Java 对象）。一般来讲，将 POJO 简单理解为实体类也无伤大雅。<br>:::</p>
+<h2 id="创建SQL映射文件"><a href="#创建SQL映射文件" class="headerlink" title="创建SQL映射文件"></a>创建SQL映射文件</h2><p>在 DAO 模式开发中，实体类创建完之后就是要编写 BaseDao、以及不同实体的 Dao 接口和 Dao 实现类。但这一切的繁琐过程，在现在都被 MyBatis 解决了。</p>
+<p>现在，我们只需要按照 MyBatis 的要求创建好一个编写 SQL 的映射文件，在映射文件中编写好数据库的 CRUD 操作即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta"><span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta"><span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- namespace：命名空间，在同一个项目中保持唯一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;userMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--  SQL 操作（根据 CRUD 的不同选择不同的标签编写 SQL 操作）</span></span><br><span class="line"><span class="comment">          id：SQL 操作标识</span></span><br><span class="line"><span class="comment">          resultType： 结果集类型（全类名）</span></span><br><span class="line"><span class="comment">          下方设定等价于编写了一个方法：List&lt;User&gt; selectList();</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectList&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.example.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        SELECT * FROM `user`</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>::: tip 笔者说<br>SQL 映射文件的命名风格为：POJO类名Mapper.xml，就像命名以前的 Dao接口 一样，你可以将 SQL 映射文件理解为是以前的 Dao 实现类。<br>:::</p>
+<h2 id="创建核心配置文件"><a href="#创建核心配置文件" class="headerlink" title="创建核心配置文件"></a>创建核心配置文件</h2><p>MyBatis 为我们简化了非常多的操作，但是一些必须由我们自定义的配置还是少不了的。在 classpath 下创建一个核心配置文件命名为：<code>mybatis-config.xml</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta"><span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta"><span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 环境配置：</span></span><br><span class="line"><span class="comment">         可以配置多个，但生效的只有一个</span></span><br><span class="line"><span class="comment">         default属性：指定生效的环境的id</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;develop&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 单个环境配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;develop&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 事务管理配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 数据源配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/mybatis_demo_db&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">&lt;!-- 指定要加载的SQL映射文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 注意：该地址不是全类名！！！ --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;com/example/mapper/UserMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加日志配置文件"><a href="#添加日志配置文件" class="headerlink" title="添加日志配置文件"></a>添加日志配置文件</h2><p>在 MyBatis 中，采用的日志框架是 log4j，所以为了能够查看到日志输出，我们需要在 classpath 下添加一个 log4j.properties 文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">###############################################################</span><br><span class="line">#                           输出到控制台                        #</span><br><span class="line">###############################################################</span><br><span class="line"># log4j.rootLogger日志输出类别和级别：只输出不低于该级别的日志信息DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</span><br><span class="line"># DEBUG：日志级别  CONSOLE：输出位置自己定义的一个名字</span><br><span class="line">log4j.rootLogger=DEBUG,CONSOLE</span><br><span class="line"># 配置CONSOLE输出到控制台</span><br><span class="line">log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender </span><br><span class="line"># 配置CONSOLE设置为自定义布局模式</span><br><span class="line">log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout </span><br><span class="line"># 配置CONSOLE日志的输出格式  [demo] 2019-08-22 22:52:12,000  %r耗费毫秒数 %p日志的优先级 %t线程名 %C所属类名通常为全类名 %L代码中的行号 %x线程相关联的NDC %m日志 %n换行</span><br><span class="line">log4j.appender.CONSOLE.layout.ConversionPattern=[demo] %d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; - %-4r %-5p [%t] %C:%L %x - %m%n</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>当一切准备好之后，完整的项目目录结构如下：</p>
+<p><img src="/../../../public/img/2020/12/25/202012252223708.png" alt="202012252223708"></p>
+<p>创建好一个单元测试类，测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestMyBatis</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSelectList</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 1.从classpath加载核心配置文件，构建SqlSession工厂对象</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> Resources.getResourceAsStream(<span class="string">&quot;mybatis-config.xml&quot;</span>);</span><br><span class="line">        <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(is);</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 2.获取SqlSession对象</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession())&#123;</span><br><span class="line">			</span><br><span class="line">            <span class="comment">// 3.执行SQL语句 根据要执行的SQL语句选择合适的API</span></span><br><span class="line">            <span class="comment">// p1：SQL语句唯一地址 (SQL映射文件的namespace值.SQL语句的id值)</span></span><br><span class="line">            List&lt;User&gt; userList = sqlSession.selectList(<span class="string">&quot;userMapper.selectList&quot;</span>);</span><br><span class="line">			</span><br><span class="line">            <span class="comment">// 4.遍历数据</span></span><br><span class="line">            userList.forEach(System.out::println);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>控制台输出：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User [id=1, name=Jone, age=18, email=Jone@126.com]</span><br><span class="line">User [id=2, name=Jack, age=20, email=Jack@126.com]</span><br><span class="line">User [id=3, name=Tom, age=28, email=Tom@126.com]</span><br><span class="line">User [id=4, name=Sandy, age=21, email=Sandy@126.com]</span><br><span class="line">User [id=5, name=Billie, age=24, email=Billie@126.com]</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><strong>C：</strong> 好了，与 MyBatis 的第一次约会结束了。怎么样？约会体验如何？使用步骤是不是还挺简单的？</p>
+<p>虽然是在学习一个新技术，但是一定要时刻想想当初 DAO 模式你是怎么一个开发步骤，这样对比着会发现 MyBatis 就是在简化、优化原来的每个环节而已。根本上还是那么回事，多想想，脑子里就能留下使用思路。</p>
+<p>::: info 笔者说<br>对于技术的学习，笔者一贯遵循的步骤是：先用最最简单的 demo 让它跑起来，然后学学它的最最常用 API 和 配置让自己能用起来，最后熟练使用的基础上，在空闲时尝试阅读它的源码让自己能够洞彻它的运行机制，部分问题出现的原因，同时借鉴这些技术实现来提升自己的代码高度。</p>
+<p>所以在笔者的文章中，前期基本都是小白文，仅仅穿插很少量的源码研究。当然等小白文更新多了，你们还依然喜欢，后期会不定时专门对部分技术的源码进行解析。<br>:::</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/MyBatis/">MyBatis</a>
+            
+            <a href="/tags/ORM%E6%A1%86%E6%9E%B6/">ORM框架</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

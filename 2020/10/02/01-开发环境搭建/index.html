@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>开发环境搭建 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="开发环境搭建前言C： 上篇的介绍是否能让你对 Java 语言有一个初步的认识呢？认识完后，大家可能着急想上手编程了吧？但就像你要去游泳，也得先找到一个泳池？所以还是先耐下性子，听笔者说，在正式开发一个 Java 程序前，我们首先应该在计算机中，准备好对应的开发环境，Java 语言所需要的开发环境是 JDK &amp;#x2F; JRE。
+这是万里长征的第一步，搭好 Java 基础开发环境是 Java 系开" />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="开发环境搭建 | Devin的博客" />
+<meta property="og:description" content="开发环境搭建前言C： 上篇的介绍是否能让你对 Java 语言有一个初步的认识呢？认识完后，大家可能着急想上手编程了吧？但就像你要去游泳，也得先找到一个泳池？所以还是先耐下性子，听笔者说，在正式开发一个 Java 程序前，我们首先应该在计算机中，准备好对应的开发环境，Java 语言所需要的开发环境是 JDK &amp;#x2F; JRE。
+这是万里长征的第一步，搭好 Java 基础开发环境是 Java 系开" />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2020/10/02/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="Devin" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2020-10-02T21:29:00.000+08:00">最后编辑于&nbsp;2020-10-02</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2020/10/02/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="mainEntityOfPage"><span itemprop="headline">开发环境搭建</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计7879个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <h1 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>C：</strong> 上篇的介绍是否能让你对 Java 语言有一个初步的认识呢？认识完后，大家可能着急想上手编程了吧？但就像你要去游泳，也得先找到一个泳池？所以还是先耐下性子，听笔者说，在正式开发一个 Java 程序前，我们首先应该在计算机中，准备好对应的开发环境，Java 语言所需要的开发环境是 JDK &#x2F; JRE。</p>
+<p>这是万里长征的第一步，搭好 Java 基础开发环境是 Java 系开发者必须掌握的技能，所以笔者建议你，收藏好本篇教程，JDK 多安装个几遍，它又不是流氓软件，不影响（卸载不残留，重装如新装）。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021219728.jpg" alt="202010011219728"></p>
+<span id="more"></span>
+
+<h2 id="JDK和JRE的概念"><a href="#JDK和JRE的概念" class="headerlink" title="JDK和JRE的概念"></a>JDK和JRE的概念</h2><p>首先我们介绍一下我们要安装的 JDK &#x2F; JRE 的概念。</p>
+<p><code>JDK</code> 的全称是 <code>Java Development Kit</code>，即 Java 开发工具包，是 Sun 公司提供的一套用于开发 Java 应用程序的开发包，它提供了编译、运行 Java 程序所需的各种工具和资源，包括 Java 编译器、Java 运行时环境（<code>JRE</code>），以及常用的 Java类库 等。</p>
+<p><code>JRE</code>，全称 <code>Java Runtime Environment</code> ，Java 运行时环境。它是运行 Java 程序的必须条件。如果只是运行Java 程序，可以只安装 <code>JRE</code>，无需安装 <code>JDK</code>。</p>
+<p>::: tip 笔者说<br>在业内，一般都是直接安装 <code>JDK</code>，因为 <code>JDK</code> 内置了一个 <code>JRE</code>，我们亦是如此。<br>:::</p>
+<h2 id="JDK的选择"><a href="#JDK的选择" class="headerlink" title="JDK的选择"></a>JDK的选择</h2><h3 id="选择谁家的？"><a href="#选择谁家的？" class="headerlink" title="选择谁家的？"></a>选择谁家的？</h3><p>了解完 <code>JDK</code> 概念之后，我们还要了解下目前 <code>JDK</code> 的现状。Sun 公司当初开发了 Java 语言，作为 Java 语言的开发工具包， <code>JDK</code> 在发展中被 Sun 公司分化为了两大分支。（ 可延伸阅读 <a target="_blank" rel="noopener" href="https://www.51cto.com/specbook/11/35089.htm">Java 终于开源了，采用GPLv2授权协议</a> ）</p>
+<ul>
+<li><code>Open JDK</code>  ，开源（源代码公开）版本，以 GPL V2（General Public License）协议的形式开源</li>
+<li><code>Sun JDK</code> ，使用 JRL（Java Research License，Java 研究授权协议）发布。</li>
+</ul>
+<p>::: tip 笔者说<br>GPL 协议，在开源协议里被称为”病毒”协议，只要是基于 GPL 协议 <strong>开源</strong> 的代码来开发，那么这项目也必须开源。  </p>
+<p>JRL 协议，是 Sun 公司自己搞出来的协议，理解起来就是 Sun 公司公开代码，但是代码的所有权完全归它自己所有，你们能看。  </p>
+<p>不过上述协议对我们使用 JDK 没有什么影响，它影响的是那些想改动 JDK 或基于 JDK 代码二次开发的个人或公司群体，我们又不动 JDK 代码。<br>:::</p>
+<p>其实两个分支版本，在发展中有很大部分的相同代码，不过<code>Open JDK</code>不如 <code>Sun JDK</code> 完整是肯定的(缺少一些特性API)，且一部分代码由于产权等原因无法授权给 <code>Open JDK</code> 使用，便在 <code>Open JDK</code> 中替换为没有产权问题的代码。</p>
+<p>很多大公司为了避免版权问题，都在使用基于 <code>Open JDK</code> 开发或自主开发的 JDK 版本，例如亚马逊的 Corretto、阿里巴巴的 Dragonwell、华为的毕昇、腾讯的 Kona等（咱们国内今年井喷式开源 JDK）。</p>
+<p>另外我们都知道，Sun （升阳公司）在2009年被 Oracle（甲骨文公司）收购了，Java 相关业务及版权也就归Oracle 所有。后续的 <code>JDK</code> 更新当然也就由 Oracle 负责了，但是 Oracle 在行业内有一个”不太好”的名声，”什么都要钱，什么都死贵”（实际上，商业公司的本质就是盈利，Sun 公司当初还没做到怎么盈利就没了，Oracle 后面继续做这件事也无可厚非）。</p>
+<p>在2009年到2019年期间，Oracle 没有做什么收费的大动作，但是这种情况在2019年1月1日出现了点变化。Oracle 宣布从2019年1月1日起，<code>Oracle JDK 8</code> 的后续更新将需要收费。<code>Oracle JDK 8</code> 的 <code>8u211</code> 和 <code>8u212</code>更新，开始把许可协议从 <code>BCL</code> 换成了 <code>OTN</code>，这就意味着，你不能在生产环境使用这类版本了。</p>
+<p>::: tip Oracle 采用的许可协议介绍<br>BCL协议，即Oracle Binary Code License  Agreement，协议规定你可以使用JDK，但是不能进行修改(和上文的JRL类似)，私用和商用都可以，但是JDK中的某些商业特性，是需要付费才可以使用的。  </p>
+<p>OTN协议，即Oracle Technology Network License Agreement，目前新发布的JDK用的都是这个协议，可以私用，商用需要付费。[1]<br>:::</p>
+<p>一石激起千层浪，本来就担心的事终于发生了，很多公司更是开始进行 <code>JDK</code> 版本转移和考虑以后的选择。</p>
+<p>下图是2020年初，Jrebel 在 Java 生态报告中，对 <code>JDK</code> 选择的调查结果（中国内也差不多，仅供参考）。根据结果表示，<code>Oracle JDK(Sun JDK)</code>和<code>Oracle Open JDK(Sun Open JDK)</code>还是占据比较大的市场地位，但<code>AdoptOpenJDK</code>的占有率也在迅速提升中。</p>
+<p>我们现在学习选择用 <code>Oracle JDK</code> 就可以了，公司内就看公司的架构师或领导想法了。[可延伸阅读，了解更多的 <a target="_blank" rel="noopener" href="https://www.oschina.net/news/99836/time-to-look-beyond-oracles-jdk">JDK 发行版</a>]</p>
+<p><img src="/../../../public/img/2020/10/02/202010021221992.png" alt="202010021221992"></p>
+<h3 id="选择哪个版本？"><a href="#选择哪个版本？" class="headerlink" title="选择哪个版本？"></a>选择哪个版本？</h3><p>每个版本的对应 <code>Open JDK</code> 更新也不是无限期，是有支持期限的。<code>Oracle JDK 8</code> 还有个人版、商业版。这些事其实还挺头疼的，不过我们现在学习用 <code>Oracle JDK</code> 没有问题，进公司到时候就”入乡随俗”吧。</p>
+<p>选定好发行版之后，那我们用第几版本呢？下面是 Jrebel 的报告，其中很明显是 <code>JDK 8</code> 应用最广。虽然截止笔者调整教程今天，JDK 已经快要发布到了 <code>JDK 16</code>，但是公司追求的是稳定，所以没有太大更新或修复的情况，一般升级就非常慢，你想想 Windows 7 到 Windows 10 的用户升级之路就理解了。另外 JDK 9、JDK 10 都没人用，是因为它们都是过渡版本，类似于 Windows8 一样，不是长期支持（维护）版本。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021222666.png" alt="202010021222666"></p>
+<h2 id="JDK下载"><a href="#JDK下载" class="headerlink" title="JDK下载"></a>JDK下载</h2><p>既然我们选择了 <code>Oralce JDK 8</code>，那就前往Oracle官网下载吧。</p>
+<p>1.打开下方的链接，或者自行百度搜索 <code>JDK</code>，找到类似下方页面。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle国际官网</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/cn/java/javase/downloads/index.html">Oracle中国官网</a></p>
+</li>
+</ul>
+<p><img src="/../../../public/img/2020/10/02/202010021222777.png" alt="202010021222777"></p>
+<p>2.下拉到页面最下方，找到<code>Java Archive</code>点击进入<code>JDK</code>历史版本存档页面。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021222888.png" alt="202010021222888"></p>
+<p>你看 <code>Java SE 8</code> 分为了两个链接，<code>8u211及之后 </code>（收费）和<code>8u202及之前</code>（免费）。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021223666.png" alt="202010021223666"></p>
+<p>3.点击 <code>Java SE 8(8u2020 and earlier)</code> 进入下载页面，然后选择你所需的平台版本。大多数同学应该用的都是 Windows 64 位的系统，选择下方箭头指示的版本即可。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021223777.png" alt="202010021223777"></p>
+<p>记得勾选 <code>卖身协议</code> 。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021224888.png" alt="202010021224888"></p>
+<p>Oracle 现在要求下载 <code>JDK</code> 必须先登录，没有帐号的同学，自己先注册一个吧。网络是真慢！忍忍！</p>
+<p><img src="/../../../public/img/2020/10/02/202010021224999.png" alt="202010021224999"></p>
+<p>4.终于下载好了，笔者家里开的热点网络，太慢了。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021225560.png" alt="202010021225560"></p>
+<h2 id="JDK安装"><a href="#JDK安装" class="headerlink" title="JDK安装"></a>JDK安装</h2><p>下载好了，开始安装 <code>JDK</code> 吧，和安装 QQ 等软件一样，而且它不是流氓软件，不会静默给你下载一个”全家桶”。</p>
+<p>1.双击程序安装包，开始进行 <code>JDK</code> 安装，点击下一步。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021225676.png" alt="202010021225676"></p>
+<p>2.点击更改，更改 <code>JDK</code> 的安装位置。</p>
+<p>::: warning 笔者说<br>为了防止出现，你自己安装的软件自己都找不到在哪儿这种问题，我们统一安装位置，任选一个磁盘，在其下新建一个 <code>develop</code> 的文件夹，用于以后安装所有开发软件。笔者演示时将 <code>develop</code> 文件夹放在了 <code>d</code> 盘下。<br>:::</p>
+<p><img src="/../../../public/img/2020/10/02/202010021226600.png" alt="202010021226600"></p>
+<p>在弹出的更改安装目录对话框中，只需要修改前面的盘符 <code>d:</code> 和文件夹 <code>develop</code>，后面的子文件夹 <code>Java\jdk1.8.0_xxx\</code> 不需要修改，然后点击确定。如果文件夹不存在，安装时会自动创建。</p>
+<p>::: danger 笔者说<br>安装路径不要出现空格，中文，特殊符号等！<br>:::</p>
+<p><img src="/../../../public/img/2020/10/02/202010021226999.png" alt="202010021226999"></p>
+<p>这个时候程序将要安装的位置已经更改，点击下一步即可开始安装。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021227666.png" alt="202010021227666"></p>
+<h3 id="关于我们安装JDK时到底安装了些什么？"><a href="#关于我们安装JDK时到底安装了些什么？" class="headerlink" title="关于我们安装JDK时到底安装了些什么？"></a><strong>关于我们安装JDK时到底安装了些什么？</strong></h3><p>我们选中第一个 <code>开发工具</code> 时，右侧给出了提示，这是安装的 <code>JDK</code>。它是最主要的，甚至我们可以说只需要有它就可以。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021227777.png" alt="202010021227777"></p>
+<p>当我们选中第二个 <code>源代码</code> 时右侧给出提示，这是 Java 8 的源代码，因为 Java 是公开源代码的。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021227888.png" alt="202010021227888"></p>
+<p>当我选中第三个 <code>公共JRE</code> 时，右边给出提示，这是一个独立的 <code>JRE</code>，我们可以不用安装。不过一般情况我们都选择安装，目的是为了以后如果有一些 Java 程序想单独运行，那么必须配套一个 <code>JRE</code>，到那时候就可以用上了。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021228963.png" alt="202010021228963"></p>
+<p>比如下方是做支付宝第三方支付支持时，支付宝官方给提供的一个做签名校验的 Java 程序。后缀名为 <code>.jar</code> 的是 Java 程序，但是如果想运行此程序就必须依赖上方的一个独立 <code>jre</code>，我们刚才安装选择界面看到的就是它。(支付宝官方下载下来的这工具，就给你带着这个 JRE )</p>
+<p><img src="/../../../public/img/2020/10/02/202010021228999.png" alt="202010021228999"></p>
+<p>4.等待安装，这步只是在安装 <code>JDK</code>。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021229777.png" alt="202010021229777"></p>
+<p>安装完 <code>JDK</code> 后，会弹出一个提示框，提示我们安装的 <code>JDK</code> 版本不受到收费影响，点确定即可。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021232169.png" alt="202010021232169"></p>
+<p>5.因为刚才我们没有放弃独立 <code>JRE</code> 的安装，所以现在开始安装它，自己更改好安装路径。最好类似我下方示例，然后点击下一步。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021232222.png" alt="202010021232222"></p>
+<p>等待安装。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021232586.png" alt="202010021232586"></p>
+<p>点击关闭，即完成安装。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021233888.png" alt="202010021233888"></p>
+<p>安装完成后，你的桌面不会出现任何图标，不用大惊小怪，<code>JDK</code> 是开发环境，不是 QQ 这类软件。</p>
+<p><code>JDK</code> 的安装目录如下。</p>
+<p>::: tip 笔者说<br>刚才之所以说可以不安装那个独立 <code>JRE</code>，因为 <code>JDK</code> 本身自己就自带一个 <code>JRE</code>，为什么<code>JDK</code> 会自带一个？我们就不讨论 JDK 内自带的 Java 程序，就说我们用 <code>JDK</code> 开发 Java 程序，开发好后也需要进行测试运行啊，所以自然需要这 <code>JRE</code> 了。<br>:::</p>
+<p><img src="/../../../public/img/2020/10/02/202010021234766.png" alt="202010021234766"></p>
+<p>独立 <code>JRE</code> 的安装目录如下。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021234888.png" alt="202010021234888"></p>
+<p>安装完之后，我们想测试一下 <code>JDK</code> 是否安装成功，可以运行 <code>JDK</code> 安装目录下 <code>bin</code> 目录内的 <code>java.exe</code> 程序。如果你看不到 <code>.exe</code>，记得自行开启下计算机的扩展名显示。</p>
+<p>在 <code>Windows</code> 中我们习惯双击运行程序，但是却发现 <code>java.exe</code> 双击后会弹出一个黑窗口一闪而过。这是因为这种程序，它们需要在特别的系统内运行，比如说我们的 <code>DOS</code> 系统，下面就和笔者去学一下基本的 <code>DOS</code> 使用吧。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021234999.png" alt="202010021234999"></p>
+<h2 id="DOS系统"><a href="#DOS系统" class="headerlink" title="DOS系统"></a>DOS系统</h2><h3 id="什么是DOS？"><a href="#什么是DOS？" class="headerlink" title="什么是DOS？"></a>什么是DOS？</h3><p>那 <code>DOS</code> 是什么呢？它的全称是 <code>Disk Operating System</code> ，即磁盘操作系统。简单点说，你看过的电影里，黑客们是不是在计算机的一个黑窗口中”运指如飞”？这个所谓的黑窗口不是 <code>DOS</code> 那就是 Linux 系。</p>
+<p>实际上 <code>DOS</code> 它就是早期主流的计算机操作系统，后来 Windows 等主打可视化的系统出现，才让计算机逐渐摆脱专业的概念，变得”平民化”，走入千家万家。之前之所以专业化，就是因为这个系统需要通过命令来进行计算机操作，而不能使用鼠标点来点去，所以非专业人士去背命令和习惯这使用方式，简直”太难”了。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021235666.png" alt="202010021235666"></p>
+<h3 id="进入DOS系统"><a href="#进入DOS系统" class="headerlink" title="进入DOS系统"></a>进入DOS系统</h3><p>在Windows 系统任何位置，可以通过按下 <code>Windows</code> 键 + <code>r</code> 键，在左下角弹出的运行窗口输入 <code>cmd</code> 然后回车，就可以弹出 <code>DOS</code> 命令行。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021235777.png" alt="202010021235777"></p>
+<p>另外，还可以通过在 <code>开始菜单</code> 中直接搜索 <code>cmd</code>，然后 <code>右键以管理员身份运行</code> 的方式打开。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021235888.png" alt="202010021235888"></p>
+<p>进入了 <code>DOS</code> 命令行。要求左上方有管理员标识(如果没有此标识，你创建文件等都没有权限，有些命令甚至提示不存在)。当你是 <code>Windows 10</code> 系统，那么很可能没有，因为 <code>Windows 10</code> 对于权限的把控比较严格，所以你可以采取上方的第二种方法进入 <code>DOS</code> 命令行。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021235999.png" alt="202010021235999"></p>
+<p>进入了 <code>DOS</code> 命令行，先认识下组成，前部分是当前你在 <code>DOS</code> 系统所处的路径（当前目录&#x2F;文件夹，目录就是文件夹的意思，之后不再解释），后部分就是可以输入命令的位置。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021236761.png" alt="202010021236761"></p>
+<p>上方的路径，等价于你在 <code>Windows</code> 系统中进入了如下位置。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021236888.png" alt="202010021236888"></p>
+<h3 id="DOS常用命令"><a href="#DOS常用命令" class="headerlink" title="DOS常用命令"></a>DOS常用命令</h3><h4 id="查看列表"><a href="#查看列表" class="headerlink" title="查看列表"></a>查看列表</h4><p>在上图中，如果我们在 <code>Windows</code> 系统中进入了某个路径，可以很直观的看到当前路径下的所有文件和文件夹。那么在 <code>DOS</code> 中如何实现这一目的呢？</p>
+<p>输入 <code>dir</code> 命令，即可列出当前所处位置的文件和文件夹列表，如下图所示。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021236999.png" alt="202010021236999"></p>
+<h4 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h4><p>那如果不想待在默认的路径了，想切换到其它位置。</p>
+<ul>
+<li><p>相同磁盘的目录切换，直接通过 <code>cd 目录路径</code> 来切换。（这个路径必须存在，不然切换不过去）</p>
+<p>例如：我想切换到当前目录下的 <code>Documents</code> 目录。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021237281.png" alt="202010021237281"></p>
+</li>
+<li><p>不同磁盘的目录切换，先通过 <code>盘符:</code> 来切换磁盘，然后 <code>cd 目录路径</code> （注意 cd 后有空格）再切换到对应位置。</p>
+<p>例如：我想切换到刚才 <code>JDK</code> 的安装目录。</p>
+</li>
+</ul>
+<p>::: tip 笔者说<br>如果路径长，在输入的时候，还可以通过 <code>Tab</code> 键来进行内容补全。例如下方的输入，输入完 <code>De</code> 就可以按一下 <code>Tab</code>  键快速补全。因为 DOS 会自动识别所在目录下的内容名字，如果能匹配到就可以快速补全，当然如果有多个 <code>De </code> 打头的内容，那就尽量输入多一些字母后再按 <code>Tab</code> ，这样就更精准。<br>:::</p>
+<p>  <img src="/../../../public/img/2020/10/02/202010021237777.png" alt="202010021237777"></p>
+<p>还有一些特别的路径切换，比如返回上一级目录。在 <code>Windows</code> 系统中，鼠标点一下返回键就可以了，在 <code>DOS</code>中，可以通过 <code>cd ..</code> 命令来切换。<code>..</code>和<code>.</code> 是每个目录下都存在的两个隐藏文件夹，它们一个代表上一级目录，一个代表当前目录。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021237888.png" alt="202010021237888"></p>
+<p><img src="/../../../public/img/2020/10/02/202010021238777.png" alt="202010021238777"></p>
+<p>还有在磁盘比较深的路径时，可以输入 <code>cd  /</code> 来快速回到磁盘根目录下。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021238999.png" alt="202010021238999"></p>
+<h4 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h4><p>在 <code>Windows</code> 中如果想运行程序，我们都是双击程序快捷方式或程序启动文件。而在 <code>DOS</code> 中，如果我们想要运行程序，只需要输入程序启动文件路径，然后回车即可。</p>
+<p>例如：我想运行钉钉程序，我知道它的启动程序地址，那么就可以利用 <code>Tab</code> 快速提示着来输入好地址。下图的 <code>&quot;&quot;</code> 是按 <code>Tab</code> 自动生成的，<code>DOS </code>里为了防止空格产生的影响，可以加 <code>&quot;&quot;</code> 进行包裹，表示一个整体。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021239111.png" alt="202010021239111"></p>
+<p>这个路径实在太长了，如果在 <code>DOS</code> 中，使用过了且没关闭 <code>DOS</code> 窗口的情况下，还需要使用时，建议按 <code>↑</code> 或 <code>↓</code> 方向键，翻一翻历史命令。</p>
+<h3 id="测试JDK是否安装成功"><a href="#测试JDK是否安装成功" class="headerlink" title="测试JDK是否安装成功"></a>测试JDK是否安装成功</h3><p>OK，掌握了 <code>DOS</code> 基本使用，这时候我们再来通过它运行下 <code>java.exe</code>，输入 <code>java.exe</code> 路径太长了，我们可以偷点懒。</p>
+<p>先通过 <code>Windows</code> 找到 <code>java.exe</code>，然后在地址栏输入 <code>cmd</code>，回车后就可以快速进入程序所在的位置了。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021240572.png" alt="202010021240572"></p>
+<p><img src="/../../../public/img/2020/10/02/202010021241888.png" alt="202010021241888"></p>
+<p>然后就可以运行 <code>java.exe </code>了，后面追加一个 <code>-version</code> 可以用来查看 <code>JDK</code> 的版本，如果出现下方所示内容，说明 <code>JDK</code> 的安装是完全正常的。</p>
+<p>::: tip 笔者说<br><code>DOS</code> 中可以省略 <code>exe</code> 之类的后缀<br>:::</p>
+<p><img src="/../../../public/img/2020/10/02/202010021241999.png" alt="202010021241999"></p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在刚才的内容搞定后，其实我们的 Java 开发环境已经搭建完了，我们之后开发 Java 程序会一直使用刚才的<code>java.exe </code>程序。不过现在使用还是挺麻烦的，每次都要在 <code>DOS</code> 中先找到程序或输入程序路径才能运行，有没有什么办法可以在 <code>DOS</code> 任意目录使用 <code>java.exe</code> 呢？</p>
+<p>看看百度百科了解一下环境变量吧，其实环境变量就是操作系统里存储的一些参数或关键值，每个在操作系统里运行的程序都可以获取到这些存储的内容。（后面我们学到变量这一程序概念时，就可以更好的理解它的作用了，到时候记得回来再看看）</p>
+<p><img src="/../../../public/img/2020/10/02/202010021242277.png" alt="202010021242277"></p>
+<h3 id="找到环境变量设置"><a href="#找到环境变量设置" class="headerlink" title="找到环境变量设置"></a>找到环境变量设置</h3><p>在 <code>开始菜单</code> 中搜索 <code>环境变量</code>，点击 <code>编辑系统环境变量</code>，打开 <code>系统属性</code> 对话框。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021243229.png" alt="202010021243229"></p>
+<p>在 <code>高级</code> 选项卡中，点击 <code>环境变量</code> 就可以进入修改环境变量的对话框。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021243777.png" alt="202010021243777"></p>
+<p><img src="/../../../public/img/2020/10/02/202010021243888.png" alt="202010021243888"></p>
+<h3 id="path环境变量"><a href="#path环境变量" class="headerlink" title="path环境变量"></a>path环境变量</h3><p>其中 <code>path</code> 环境变量就是用来存储路径列表的，里面存储了一个个的路径。当我们在 <code>DOS</code> 命令行中直接输入程序的名字然后回车，这时候 <code>DOS</code> 会先在当前目录下搜索该文件，若找到则运行之，若找不到该文件，则根据 <code>path</code> 环境变量所设置的路径列表，顺序逐条地搜索这些路径下是否有该程序，有的话也能运行。</p>
+<p>这就是我们现在需要的，可以有效解决我们为了运行 <code>java.exe</code> 而很麻烦的输入路径等，一劳永逸。有些同学还把一些游戏启动程序存到了 <code>path</code> 环境变量。</p>
+<h3 id="配置JAVA-HOME"><a href="#配置JAVA-HOME" class="headerlink" title="配置JAVA_HOME"></a>配置JAVA_HOME</h3><p>接下来就将 <code>java.exe</code> 的程序目录存储到 <code>path</code> 环境变量吧。</p>
+<p>1.点击 <code>系统变量</code> 下的 <code>新建</code>，在弹出 <code>新建系统变量</code> 窗口后，将变量值设为 JDK 安装路径（bin 目录上一级），变量名设为 <code>JAVA_HOME</code> （之所以叫这名，是因为Maven、Tomcat等日后所用开发程序大多会使用到此环境变量），所以名称不允许修改。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021245777.png" alt="202010021245777"></p>
+<p>2.上方存储的环境变量还不完整，并且没添加到 <code>path</code> 环境变量。所以我们需要在 <code>path</code> 环境变量中再做些处理。</p>
+<p>点击系统变量中的 <code>path</code> 环境变量，然后点击 <code>编辑</code>，删除其中 Oracle 默认生成的一个目录配置（JDK 1.8之后就开始自动加上了，但是这个地址对我们用处不大，删掉）。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021245888.png" alt="202010021245888"></p>
+<p>点击 <code>新增 </code>，添加一条 <code>%JAVA_HOME%\bin</code> 变量，<code>%JAVA_HOME%</code> 表示引用 <code>JAVA_HOME</code> 环境变量的值，这一条变量等价于在 <code>path</code> 中添加了 <code>D:\Develop\Java\jdk1.8.0_202\bin</code>。</p>
+<p><img src="/../../../public/img/2020/10/02/202010021245999.png" alt="202010021245999"></p>
+<p>::: danger 笔者说<br><code>Win7</code>系统的 <code>path</code> 环境变量是全部在一起的，而不是像 <code>Win10</code> 这样一条条很清晰。自己去新加入一条：<code>%JAVA_HOME%\bin;</code>（结尾这一定要用英文<code>;</code>来分隔其他的环境变量啊！）。  </p>
+<p>还有我们在配置 Java 安装路径的时候，需要格外注意不要将之前的还有一些系统的 <code>path</code> 配置删除，也不要写错。（不要在蓝色选中状态时直接输入，会全部替换的！！！）否则有很多系统命令就没法在 DOS 中便捷愉快的使用了。<br>:::</p>
+<p><img src="/../../../public/img/2020/10/02/202010021246666.png" alt="202010021246666"></p>
+<h3 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h3><p>配置好 <code>path</code> 环境变量之后，关闭所有的 <code>DOS</code> 窗口。再重新打开 <code>DOS</code> 后，输入 <code>java -version</code> ，我们看到和之前一样的效果，而且我们不用在输入 <code>java.exe</code> 冗长的路径了！</p>
+<p><img src="/../../../public/img/2020/10/02/202010021246777.png" alt="202010021246777"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]闷瓜蛋子. Oracle如何对JDK收费[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64731331">https://zhuanlan.zhihu.com/p/64731331</a>. 2019-06-18</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><code>JDK</code> 的安装环节也就介绍到这。补充了一些基础内容，比较杂的感觉，但实际是顺序流程的学习，好好看看本篇文章大纲！每个步骤一定要实践一下！加油！有问题可以邮箱或订阅号联系笔者。</p>
+<p>::: info 笔者说<br>对于技术的学习，笔者一贯遵循的步骤是：先用最最简单的 demo 让它跑起来，然后学学它的最最常用 API 和 配置让自己能用起来，最后熟练使用的基础上，在空闲时尝试阅读它的源码让自己能够洞彻它的运行机制，部分问题出现的原因，同时借鉴这些技术实现来提升自己的代码高度。</p>
+<p>所以在笔者的文章中，前期基本都是小白文，仅仅穿插很少量的源码研究。当然等小白文更新多了，你们还依然喜欢，后期会不定时专门对部分技术的源码进行解析。<br>:::</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/java/">Java</a>
+            
+            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+            
+            <a href="/tags/JDK/">JDK</a>
+            
+            <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">开发环境</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

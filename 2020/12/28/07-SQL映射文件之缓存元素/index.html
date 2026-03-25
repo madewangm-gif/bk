@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-Hans">
+<head>
+    <!--[if lte IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.baidu.com/warn.html">
+<![endif]-->
+
+<meta charset="utf-8" />
+<title>sql映射文件之缓存元素 | Devin的博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="SQL映射文件之缓存元素前言C：  在上一篇，笔者带大家对 MyBatis SQL 映射文件的 resultMap 元素做了介绍，它大概是 MyBatis 学习中第一个 “坎儿”，没跨过来的同学也没关系，慢慢来，切勿急躁，先看看本篇再说。本篇，笔者将带你学习 MyBatis SQL 映射文件的 cache 元素。
+cache 即缓存，任何应用都不可缺少的一个组成部分，但凡想提升性能，缓存就得拿出来" />
+<meta name="author" content="Devin" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="format-detection" content="telephone=no,email=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Devin的博客" />
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="sql映射文件之缓存元素 | Devin的博客" />
+<meta property="og:description" content="SQL映射文件之缓存元素前言C：  在上一篇，笔者带大家对 MyBatis SQL 映射文件的 resultMap 元素做了介绍，它大概是 MyBatis 学习中第一个 “坎儿”，没跨过来的同学也没关系，慢慢来，切勿急躁，先看看本篇再说。本篇，笔者将带你学习 MyBatis SQL 映射文件的 cache 元素。
+cache 即缓存，任何应用都不可缺少的一个组成部分，但凡想提升性能，缓存就得拿出来" />
+<meta property="og:url" content="http://www.baidu.com" />
+<meta property="og:site_name" content="Devin的博客" />
+
+<link rel="dns-prefetch" href="http://www.baidu.com" />
+<link rel="preconnect" href="http://www.baidu.com" />
+
+    <link rel="preconnect" href="https://.disqus.com" />
+    <link rel="preconnect" href="https://c.disquscdn.com" />
+
+
+<link rel="icon" type="image/svg+xml" href="http://www.baidu.com/images/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="http://www.baidu.com/images/favicon.png" />
+<link rel="alternate" type="application/xml" title="Site Map" href="http://www.baidu.com/sitemap.xml"/>
+<link rel="canonical" href="http://www.baidu.com/2020/12/28/07-SQL%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E4%B9%8B%E7%BC%93%E5%AD%98%E5%85%83%E7%B4%A0/" />
+
+
+<link rel="stylesheet" href="/css/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" media="print" onload="this.media='all'" crossorigin />
+<link rel="stylesheet" href="/css/JSimple.min.css" />
+
+<style id="highl_css"></style>
+
+<script type="text/javascript">
+    (function() {
+        let jsi_config = {
+            isPost: 'true',
+            creationTime: '08/08/2024',
+            highlightTheme: 'atom-one',
+            readMode: 'day',
+            chatLink: '',
+            localSearch: { dbPath: '' }
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.xml',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        window.jsi_config = jsi_config;
+    })()
+</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="Devin">Devin</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#" aria-label="content searching link"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#" aria-label="reading mode chang"><i class="fa fa-sun-o"></i></a>
+    
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <div class="cover-info">
+        <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
+        <h1>Devin</h1>
+        <h3>用代码摇滚这个世界</h3>
+        <h4>一个关注科技与人文的技术博客</h4>
+        <div class="cover-sns">
+            
+    <div class="btn btn-github">
+        <a href="" title="github" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-github"></i>
+        </a>
+    </div>
+
+    <div class="btn btn-youtube">
+        <a href="" title="youtube" rel="external nofollow noopener" target="_blank">
+            <i class="fa fa-youtube"></i>
+        </a>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/java" data-name="Java基础快速入门">Java基础快速入门</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/MyBatis" data-name="MyBatis快速入门">MyBatis快速入门</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text"
+               readonly="readonly"
+               id="local-search-input-tip"
+               placeholder="按Shift启动搜索" />
+        <button type="button" aria-label="fa-search" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix" itemscope itemtype="https://schema.org/Person">
+                <a class="avatar fleft" target="_blank" href="http://localhost:4000" rel="author noopener">
+                    <img width="48" src="/images/avatar.webp" alt="avatar" itemprop="image"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="Devin" itemprop="url"><span itemprop="name">Devin</span></a>
+                    <span itemprop="datePublished" content="2020-12-28T00:17:00.000+08:00">最后编辑于&nbsp;2020-12-28</span>
+                </p>
+                <p itemprop="description">一个爱吃苹果的「小黄人」</p>
+            </div>
+            <h1 class="post-title">
+                <a target="_self" href="http://www.baidu.com/2020/12/28/07-SQL%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E4%B9%8B%E7%BC%93%E5%AD%98%E5%85%83%E7%B4%A0/" itemprop="mainEntityOfPage"><span itemprop="headline">SQL映射文件之缓存元素</span></a>
+            </h1>
+            <div class="post-meta" itemprop="wordCount">
+                本文共计5608个字 |
+                <span id="busuanzi_container_page_pv">
+                    你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
+                </span>
+            </div>
+        </div>
+        <div class="post-content markdown-body articleBody" itemprop="articleBody">
+            <h1 id="SQL映射文件之缓存元素"><a href="#SQL映射文件之缓存元素" class="headerlink" title="SQL映射文件之缓存元素"></a>SQL映射文件之缓存元素</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>C：</strong>  在上一篇，笔者带大家对 MyBatis SQL 映射文件的 resultMap 元素做了介绍，它大概是 MyBatis 学习中第一个 “坎儿”，没跨过来的同学也没关系，慢慢来，切勿急躁，先看看本篇再说。本篇，笔者将带你学习 MyBatis SQL 映射文件的 cache 元素。</p>
+<p>cache 即缓存，任何应用都不可缺少的一个组成部分，但凡想提升性能，缓存就得拿出来说道说道。MyBatis 中自然也少不了缓存的存在，下面我们去看看吧。</p>
+<h2 id="cache元素"><a href="#cache元素" class="headerlink" title="cache元素"></a>cache元素</h2><p>cache 元素，是用于开启 MyBatis 二级缓存的关键。在 MyBatis 中缓存分为一级缓存和二级缓存 。</p>
+<h3 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h3><p><strong>一级缓存主要指的是 Session 缓存，默认是开启并生效的</strong> 。</p>
+<p>一级缓存存在两种作用域范围：[2]</p>
+<ul>
+<li><code>SESSION</code>（默认）<strong>在同一个 SqlSession 中多次执行同一个查询，除第一次走数据库，剩下的都走缓存</strong> 。</li>
+<li><code>STATEMENT</code> 每执行完一个 Mapper 中的语句后都会将一级缓存清除（不推荐配置）。</li>
+</ul>
+<p>测试一下一级缓存的 <code>SESSION</code> 作用域范围：(随便找两个查询试试就可以)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestMyBatis</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSelectByList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取SqlSession对象</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.openSession()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取 Mapper 接口</span></span><br><span class="line">            <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">			</span><br><span class="line">            <span class="comment">// 执行不同 SQL</span></span><br><span class="line">            List&lt;User&gt; userList1 = userMapper.selectList();</span><br><span class="line">            List&lt;User&gt; userList2 = userMapper.selectByName(<span class="string">&quot;J&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很显然它执行了两条 SQL，和缓存根本搭不上关系。</p>
+<p><img src="/../../../public/img/2020/12/28/202012281138752.png" alt="202012281138752"></p>
+<p>再来试试执行两次相同的 SQL 查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestMyBatis</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSelectByList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 获取SqlSession对象</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MyBatisUtils.openSession()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取 Mapper 接口</span></span><br><span class="line">            <span class="type">UserMapper</span> <span class="variable">userMapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">            <span class="comment">// 执行相同 SQL</span></span><br><span class="line">            List&lt;User&gt; userList1 = userMapper.selectList();</span><br><span class="line">            List&lt;User&gt; userList2 = userMapper.selectList();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果显而易见，MyBatis 在同一个 SqlSession 中，对相同的 SQL 查询，只执行了一次，第二次则直接使用了缓存。</p>
+<p><img src="/../../../public/img/2020/12/28/202012281139250.png" alt="202012281139250"></p>
+<h3 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h3><p><strong>二级缓存是指 mapper 映射文件。</strong> 二级缓存的作用域是同一个 namespace 下的 mapper 映射文件内容，<strong>多个 SqlSession 之间是共享的</strong> 。</p>
+<p>::: warning 笔者说<br>可以通过核心配置文件中的 settings 元素的 cacheEnabled 对所有二级缓存进行全局性开&#x2F;关设置（默认值为true）。<br>:::</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;cacheEnabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在测试二级缓存前，我们需要先对指定的 SQL 映射文件启用二级缓存，即添加一个 cache 元素。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 对于同一个 SQL 映射文件来讲，只能使用一个 cache 元素 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cache</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面我们仅仅添加了一个空 cache 元素 ，但其实它已经采用了很多缓存默认值，大致如下：[1]</p>
+<ul>
+<li>映射语句文件中的所有 select 语句的结果将会被缓存。</li>
+<li>映射语句文件中的所有 insert、update 和 delete 语句会刷新缓存（哪怕最后没提交事务也会刷新缓存）。</li>
+<li>缓存会使用最近最少使用算法（LRU, Least Recently Used）算法来清除不需要的缓存。</li>
+<li>缓存不会定时进行刷新（也就是说，没有刷新间隔）。</li>
+<li>缓存会保存列表或对象（无论查询方法返回哪种）的 1024 个引用。</li>
+<li>缓存会被视为读&#x2F;写缓存，这意味着获取到的对象并不是共享的，可以安全地被调用者修改，而不干扰其他调用者或线程所做的潜在修改。</li>
+</ul>
+<p>你也可以通过修改 cache 元素的属性来调整二级缓存。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这个更高级的配置创建了一个 FIFO 缓存，每隔 60 秒刷新，最多可以存储结果对象或列表的 512  个引用，而且返回的对象被认为是只读的，因此对它们进行修改可能会在不同线程中的调用者产生冲突。  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">    <span class="attr">eviction</span>=<span class="string">&quot;FIFO&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">flushInterval</span>=<span class="string">&quot;60000&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">size</span>=<span class="string">&quot;512&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">readOnly</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>eviction</strong> 代表缓存清除策略：（默认的清除策略是 LRU）</p>
+<ul>
+<li><code>LRU</code>  最近最少使用：移除最长时间不被使用的对象  </li>
+<li><code>FIFO</code>  先进先出：按对象进入缓存的顺序来移除它们 </li>
+<li><code>SOFT</code>  软引用：基于垃圾回收器状态和软引用规则移除对象     </li>
+<li><code>WEAK</code> – 弱引用：更积极地基于垃圾收集器状态和弱引用规则移除对象。</li>
+</ul>
+<p><strong>flushInterval</strong> 代表缓存刷新间隔：（默认情况是不设置，也就是没有刷新间隔，缓存仅仅会在调用语句时刷新）它的属性值可以被设置为任意的正整数，设置的值应该是一个以毫秒为单位的合理时间量。        </p>
+<p><strong>size</strong> 代表可以缓存的对象引用数目：（默认值是 1024）它的属性值可以被设置为任意正整数，但要注意欲缓存对象的大小和运行环境中可用的内存资源。        </p>
+<p><strong>readOnly</strong> 代表缓存中的对象是否只读：（默认值是 false），它的属性值可以被设置为 true 或 false。只读的缓存会给所有调用者返回缓存对象的相同实例，因此这些对象不能被修改，这就提供了可观的性能提升。而可读写的缓存会（通过序列化）返回缓存对象的拷贝，速度上会慢一些，但是更安全（ <strong>建议</strong> ）。</p>
+<hr>
+<p>赶快测试一下吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestMyBatis</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testSelectByList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 获取SqlSession对象</span></span><br><span class="line">            <span class="type">SqlSession</span> <span class="variable">sqlSession1</span> <span class="operator">=</span> MyBatisUtils.openSession();</span><br><span class="line">            <span class="comment">// 执行</span></span><br><span class="line">            <span class="type">UserMapper</span> <span class="variable">userMapper1</span> <span class="operator">=</span> sqlSession1.getMapper(UserMapper.class);</span><br><span class="line">            List&lt;User&gt; userList1 = userMapper1.selectList();</span><br><span class="line">            <span class="comment">// 【执行关闭操作，将 SqlSession 中的数据写到二级缓存区域】</span></span><br><span class="line">            sqlSession1.close();</span><br><span class="line">			</span><br><span class="line">            <span class="comment">// 获取SqlSession对象</span></span><br><span class="line">            <span class="type">SqlSession</span> <span class="variable">sqlSession2</span> <span class="operator">=</span> MyBatisUtils.openSession();</span><br><span class="line">            <span class="comment">// 执行</span></span><br><span class="line">            <span class="type">UserMapper</span> <span class="variable">userMapper2</span> <span class="operator">=</span> sqlSession2.getMapper(UserMapper.class);</span><br><span class="line">            List&lt;User&gt; userList2 = userMapper2.selectList();</span><br><span class="line">            sqlSession2.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台报错了，User 没有序列化，上方 readOnly 属性刚介绍完，它默认值为 false，表示每次会通过序列化返回缓存对象的拷贝，以此实现可读写的缓存。</p>
+<p><img src="/../../../public/img/2020/12/28/202012281139256.png" alt="202012281139256"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span>&#123;</span><br><span class="line">    <span class="comment">// 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再测试之后，控制台输出如下，Cache Hit Ratio 表示缓存命中率，开启二级缓存后，每执行一次查询，系统都会计算一次二级缓存的命中率。第一次查询也是先从缓存中查询，只不过缓存中一定是没有的，所以命中率为0，然后再从DB中查询后缓存到二级缓存中。第二次查询的时候是从二级缓存中读取的，这一次的命中率为1&#x2F;2&#x3D;0.5。 当然，若有第三次查询，则命中率为1&#x2F;3&#x3D;0.66 ，依此类推。[3]</p>
+<p><img src="/../../../public/img/2020/12/28/202012281139540.png" alt="202012281139540"></p>
+<h2 id="cache-ref元素"><a href="#cache-ref元素" class="headerlink" title="cache-ref元素"></a>cache-ref元素</h2><p>当我们想要在多个命名空间中共享相同的缓存配置和实例时，cache-ref 元素就可以派上用场了，当同时使用了 cache 元素和 cache-ref 元素时，cache 元素的优先级更高。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- namespace：要共享二级缓存的某 SQL 映射文件的 namespace 的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cache-ref</span> <span class="attr">namespace</span>=<span class="string">&quot;com.example.mapper.UserMapper&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>::: tip 笔者说<br>二级缓存也不是万能的，需要根据实际情况来，当查询操作远远多于增删改操作的情况下，并且业务对数据的实时性要求不高的时候可以采用二级缓存，否则增删改频繁刷新二级缓存将会降低系统性能，而缓存又会导致实时效果差。<br>而且 MyBatis 的二级缓存也存在着一些缺陷，使用 MyBatis 二级缓存必须有一个前提：保证所有的增删改查都在同一个 namespace 下才行，不然容易出现数据不一致问题，例如：当两个 SQL 映射文件中均存在对同一个表的操作，那么其中一方修改了表，只会引发该 SQL 映射文件的二级缓存清空，而不会清空另一个的。<br>:::</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]MyBatis 官网. XML 映射文件[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/sqlmap-xml.html">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html</a>. 2020-12-26</p>
+<p>[2]花好夜猿. Mybatis【面试题】讲讲Mybatis的缓存-简答[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23202687/article/details/103708458">https://blog.csdn.net/qq_23202687/article/details/103708458</a>. 2019-12-26</p>
+<p>[3]陈浩翔. 你真的懂Mybatis缓存机制吗[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/h2x15k71rClaHjcz7u2dlQ">https://mp.weixin.qq.com/s/h2x15k71rClaHjcz7u2dlQ</a>. 2018-07-10</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>SQL 映射文件的初步学习终于结束了，幸好有之前的文章雏形，但就这样还花费了半天时间整理和完善，但愿它能给小白用户带来一份系统的学习方案。</p>
+<p>::: info 笔者说<br>对于技术的学习，笔者一贯遵循的步骤是：先用最最简单的 demo 让它跑起来，然后学学它的最最常用 API 和 配置让自己能用起来，最后熟练使用的基础上，在空闲时尝试阅读它的源码让自己能够洞彻它的运行机制，部分问题出现的原因，同时借鉴这些技术实现来提升自己的代码高度。</p>
+<p>所以在笔者的文章中，前期基本都是小白文，仅仅穿插很少量的源码研究。当然等小白文更新多了，你们还依然喜欢，后期会不定时专门对部分技术的源码进行解析。<br>:::</p>
+
+            
+                
+            
+        </div>
+
+        
+
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/MyBatis/">MyBatis</a>
+            
+            <a href="/tags/ORM%E6%A1%86%E6%9E%B6/">ORM框架</a>
+            
+        </div>
+        
+    </article>
+    
+        <p style="text-align: center">声明: 本文内容由博主创作整理，读者若需转载，请保留出处，谢谢！</p>
+    
+    
+    
+</div>
+
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            本站已建立&nbsp;<a href="/about" id="siteBuildingTime"></a>&nbsp;天， <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span><br/>
+            ©2020-<span id="cpYear"></span> 基于&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="FSPG">DEGEAPPLE</a>
+            ，主题采用&nbsp;&nbsp;<a href="#" target="_blank" rel="external nofollow noopener" title="JSimple theme">JSimple</a>
+            ，作者&nbsp;<a href="http://localhost:4000" target="_blank" title="author">Devin</a>
+            ，托管于&nbsp;<a href="https://pages.github.com" target="_blank" rel="external nofollow noopener" title="github">github</a>
+            ，<a href="http://www.baidu.com/sitemap.xml" title="网站地图" rel="alternate" type="application/xml">网站地图</a>
+        </p>
+    </div>
+</footer>
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input"
+                   spellcheck="true"
+                   type="text"
+                   autocomplete="off"
+                   placeholder="请输入查询关键词"/>
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script async src="/js/SimpleCore.min.js"></script>
+<script defer src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- disqus count -->
+
+    
+
+
+<!-- google analytics -->
+
+
+<!-- ms clarity -->
+
+</body>
+</html>

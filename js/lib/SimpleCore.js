@@ -511,7 +511,7 @@ const SimpleCore = {
         } else {
             $('body').removeClass('night-mode');
             btn.find('i').attr('class', 'fa fa-sun-o');
-            $(".cover-img").attr('src', location.origin + '/images/cover-day.webp');
+            $(".cover-img").attr('src', location.origin + '/images/cover-page.jpg');
         }
         // 设置高亮主题
         let highlCss = SimpleCore.highlightTheme || 'default';

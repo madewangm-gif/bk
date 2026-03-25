@@ -10,7 +10,7 @@
 <meta name="keywords" content="" />
 <meta name="description" content="SQL映射文件之增删改元素前言C： 在上一篇，笔者带大家对 MyBatis SQL 映射文件的 select 元素、sql 元素进行了学习。本篇，笔者将带你学习 MyBatis SQL 映射文件中的 insert、update、delete元素，这三个可以说是 SQL 映射文件中最为简单的，别愣神，快跟上我。
 
-insert元素案例需求：新增用户，PeiQi，18，&amp;#x50;&amp;#x65;&amp;#10" />
+insert元素案例需求：新增用户，PeiQi，18，&amp;#80;&amp;#101;&amp;#x69" />
 <meta name="author" content="Devin" />
 <meta name="applicable-device" content="pc,mobile" />
 <meta name="format-detection" content="telephone=no,email=no" />
@@ -23,7 +23,7 @@ insert元素案例需求：新增用户，PeiQi，18，&amp;#x50;&amp;#x65;&amp;
 <meta property="og:title" content="sql映射文件之增删改元素 | Devin的博客" />
 <meta property="og:description" content="SQL映射文件之增删改元素前言C： 在上一篇，笔者带大家对 MyBatis SQL 映射文件的 select 元素、sql 元素进行了学习。本篇，笔者将带你学习 MyBatis SQL 映射文件中的 insert、update、delete元素，这三个可以说是 SQL 映射文件中最为简单的，别愣神，快跟上我。
 
-insert元素案例需求：新增用户，PeiQi，18，&amp;#x50;&amp;#x65;&amp;#10" />
+insert元素案例需求：新增用户，PeiQi，18，&amp;#80;&amp;#101;&amp;#x69" />
 <meta property="og:url" content="http://www.baidu.com" />
 <meta property="og:site_name" content="Devin的博客" />
 
@@ -94,7 +94,7 @@ insert元素案例需求：新增用户，PeiQi，18，&amp;#x50;&amp;#x65;&amp;
     <div id="body">
         <div class="main" id="main">
             <div id="cover">
-    <img class="cover-img" src="/images/cover-day.webp" alt="cover-img" loading="lazy"/>
+    <img class="cover-img" src="/images/cover-page.jpg" alt="cover-img" loading="lazy"/>
     <div class="cover-info">
         <img class="avatar" src="/images/avatar.webp" width="100" alt="avatar" loading="lazy"/>
         <h1>Devin</h1>
@@ -162,7 +162,7 @@ insert元素案例需求：新增用户，PeiQi，18，&amp;#x50;&amp;#x65;&amp;
                 <a target="_self" href="http://www.baidu.com/2020/12/27/05-SQL%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E4%B9%8B%E5%A2%9E%E5%88%A0%E6%94%B9%E5%85%83%E7%B4%A0/" itemprop="mainEntityOfPage"><span itemprop="headline">SQL映射文件之增删改元素</span></a>
             </h1>
             <div class="post-meta" itemprop="wordCount">
-                本文共计6982个字 |
+                本文共计6985个字 |
                 <span id="busuanzi_container_page_pv">
                     你是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位到访读者
                 </span>
@@ -171,7 +171,7 @@ insert元素案例需求：新增用户，PeiQi，18，&amp;#x50;&amp;#x65;&amp;
         <div class="post-content markdown-body articleBody" itemprop="articleBody">
             <h1 id="SQL映射文件之增删改元素"><a href="#SQL映射文件之增删改元素" class="headerlink" title="SQL映射文件之增删改元素"></a>SQL映射文件之增删改元素</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>C：</strong> 在上一篇，笔者带大家对 MyBatis SQL 映射文件的 select 元素、sql 元素进行了学习。本篇，笔者将带你学习 MyBatis SQL 映射文件中的 insert、update、delete元素，这三个可以说是 SQL 映射文件中最为简单的，别愣神，快跟上我。</p>
 <p><img src="/../../../public/img/2020/12/27/202012271125273.jpg" alt="202012271125273"></p>
-<h2 id="insert元素"><a href="#insert元素" class="headerlink" title="insert元素"></a>insert元素</h2><p><strong>案例需求：新增用户，PeiQi，18，<a href="mailto:&#x50;&#x65;&#105;&#81;&#105;&#x40;&#49;&#50;&#x36;&#46;&#99;&#111;&#x6d;">&#x50;&#x65;&#105;&#81;&#105;&#x40;&#49;&#50;&#x36;&#46;&#99;&#111;&#x6d;</a></strong> </p>
+<h2 id="insert元素"><a href="#insert元素" class="headerlink" title="insert元素"></a>insert元素</h2><p><strong>案例需求：新增用户，PeiQi，18，<a href="mailto:&#80;&#101;&#x69;&#x51;&#x69;&#x40;&#x31;&#50;&#x36;&#x2e;&#x63;&#x6f;&#x6d;">&#80;&#101;&#x69;&#x51;&#x69;&#x40;&#x31;&#50;&#x36;&#x2e;&#x63;&#x6f;&#x6d;</a></strong> </p>
 <p>首先，在 Mapper 接口中我们添加一个方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加用户</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user 用户信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 影响行数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">insert</span><span class="params">(User user)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
